@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="Security" version="8.0.5.0" xmlns:map="Security">
+    <output path="/ErrorResponse.xsd"/>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="LogonSubflow_Mapping">
+        <output path="mb:msg(ErrorResponse,assembly,XMLNSC,Properties)"/>
+        <assign value="Invalid username or password. Compute Fail">
+            <output path="ErrorResponse/ErrorDescription"/>
+        </assign>
+        <assign value="90">
+            <output path="ErrorResponse/ErrorCode"/>
+        </assign>
+    </mappingDeclaration>
+</mappingRoot>

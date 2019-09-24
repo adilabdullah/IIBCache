@@ -1,0 +1,81 @@
+BROKER SCHEMA Security
+
+DECLARE ser NAMESPACE 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd';
+
+CREATE COMPUTE MODULE LogonSubflow_Compute2
+      CREATE FUNCTION Main() RETURNS BOOLEAN
+      BEGIN
+            -- CALL CopyMessageHeaders();
+            -- CALL CopyEntireMessage();
+            DECLARE OperationName CHAR;
+            DECLARE SOAPUsername CHAR;
+            DECLARE FilePassword CHAR;
+            DECLARE SOAPPassword CHAR;
+            SET OperationName=Environment.Service.Operation.Name;
+            
+            SET SOAPUsername = InputLocalEnvironment.SOAP.Input.Message.Header.*:Security.*:UsernameToken.*:Username;
+            SET SOAPPassword = decode(InputLocalEnvironment.SOAP.Input.Message.Header.*:Security.*:UsernameToken.*:Password);
+
+            SET FilePassword = InputRoot.JSON.Data.{InputLocalEnvironment.SOAP.Input.Message.Header.*:Security.*:UsernameToken.*:Username}.Password;
+            
+            SET Environment.Variables.AAA.SOAPUsername = SOAPUsername;
+            SET Environment.Variables.AAA.SOAPPassword = SOAPPassword;
+            SET Environment.Variables.AAA.FILEPassword = FilePassword;
+            DECLARE p1 CHAR;
+            SET p1 = myProc1(SOAPPassword);
+      
+            SET Environment.Variables.AAA.InPassword = p1;
+                                    
+            -- CHECK IF SECURITY TOKEN PROVIDED, USER EXISTS IN JSON FILE AND PASSWORD MATCHES
+            IF (SOAPUsername IS NOT NULL AND SOAPPassword IS NOT NULL AND FIELDTYPE(InputRoot.JSON.Data.{SOAPUsername}) IS NOT NULL AND 
+                  LOWER(p1) = LOWER(FilePassword) ) THEN 
+                        
+                        --check if operation allowed
+                        IF (EXISTS(SELECT F.* FROM InputRoot.JSON.Data.{SOAPUsername}.Operation.Item[] AS F WHERE F = OperationName) OR 
+                              InputRoot.JSON.Data.{SOAPUsername}.Operation='ALL') THEN
+                              
+                              SET OutputRoot = Environment.RequestMessage;
+                              PROPAGATE TO TERMINAL 1;
+                              RETURN TRUE;
+                              
+                        ELSE 
+                              SET OutputRoot.XMLNS.ErrorResponse.ErrorCode='91';
+                              SET OutputRoot.XMLNS.ErrorResponse.ErrorDescription='Operation not allowed.';
+                              PROPAGATE TO TERMINAL 2;
+                              RETURN TRUE;
+                        END IF;
+                        
+            ELSE 
+                  SET OutputRoot.XMLNS.ErrorResponse.ErrorCode='90';
+                  SET OutputRoot.XMLNS.ErrorResponse.ErrorDescription='Invalid Username or Password.';
+                  PROPAGATE TO TERMINAL 2;
+                  RETURN TRUE;
+            END IF;
+            
+      
+            
+            
+      END;
+
+      CREATE FUNCTION  myProc1(IN s CHARACTER) RETURNS CHARACTER 
+      LANGUAGE JAVA 
+      EXTERNAL NAME "hash.JavaSecurity.getMD5";
+      
+      CREATE FUNCTION  decode(IN s CHARACTER) RETURNS CHARACTER 
+      LANGUAGE JAVA 
+      EXTERNAL NAME "hash.JavaSecurity.decode64"; 
+
+      CREATE PROCEDURE CopyMessageHeaders() BEGIN
+            DECLARE I INTEGER 1;
+            DECLARE J INTEGER;
+            SET J = CARDINALITY(InputRoot.*[]);
+            WHILE I < J DO
+                  SET OutputRoot.*[I] = InputRoot.*[I];
+                  SET I = I + 1;
+            END WHILE;
+      END;
+
+      CREATE PROCEDURE CopyEntireMessage() BEGIN
+            SET OutputRoot = InputRoot;
+      END;
+END MODULE;

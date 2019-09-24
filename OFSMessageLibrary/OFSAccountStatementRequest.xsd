@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:recSepFieldsFmt="http://www.ibm.com/dfdl/RecordSeparatedFieldFormat">
+    <xsd:import namespace="http://www.ibm.com/dfdl/RecordSeparatedFieldFormat" schemaLocation="IBMdefined/RecordSeparatedFieldFormat.xsd"/>
+    <xsd:annotation>
+		<xsd:appinfo source="http://www.ogf.org/dfdl/">
+			<dfdl:format encoding="{$dfdl:encoding}" escapeSchemeRef="" occursCountKind="implicit" ref="recSepFieldsFmt:RecordSeparatedFieldsFormat"/>
+		</xsd:appinfo>
+	</xsd:annotation>
+
+	<xsd:element ibmSchExtn:docRoot="true" name="OFSAccountStatementRequest">
+		<xsd:complexType>
+			<xsd:sequence dfdl:separator="" dfdl:separatorSuppressionPolicy="anyEmpty">
+				<xsd:element maxOccurs="unbounded" name="body">
+					<xsd:complexType>
+						<xsd:sequence dfdl:separator=",">
+                            																					<xsd:sequence dfdl:separator="">
+                <xsd:element dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" ibmDfdlExtn:sampleValue="body_value3" minOccurs="0" name="Operation" nillable="true" type="xsd:string"/>
+              </xsd:sequence>
+                            						<xsd:sequence dfdl:separator="/">
+                <xsd:element dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" ibmDfdlExtn:sampleValue="body_value3" minOccurs="0" name="Version" nillable="true" type="xsd:string"/>
+                <xsd:element dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" ibmDfdlExtn:sampleValue="body_value3" minOccurs="0" name="Function" nillable="true" type="xsd:string"/>
+                <xsd:element dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" ibmDfdlExtn:sampleValue="body_value3" minOccurs="0" name="VersionOperation" nillable="true" type="xsd:string"/>
+              </xsd:sequence>
+                            <xsd:sequence dfdl:separator="/">
+                <xsd:element dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" ibmDfdlExtn:sampleValue="body_value3" minOccurs="0" name="SignOn" nillable="true" type="xsd:string"/>
+                <xsd:element dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" ibmDfdlExtn:sampleValue="body_value3" minOccurs="0" name="Password" nillable="true" type="xsd:string"/>
+                <xsd:element dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" ibmDfdlExtn:sampleValue="body_value3" minOccurs="0" name="CompanyCode" nillable="true" type="xsd:string"/>
+              </xsd:sequence>
+                            <xsd:sequence dfdl:separator="/">
+                <xsd:element dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" ibmDfdlExtn:sampleValue="body_value3" minOccurs="0" name="TramsactionID" nillable="true" type="xsd:string"/>
+                <xsd:element dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" ibmDfdlExtn:sampleValue="body_value3" minOccurs="0" name="MessageID" nillable="true" type="xsd:string"/>
+              </xsd:sequence>
+                            <xsd:sequence dfdl:separator="," dfdl:terminator=";">
+                <xsd:element dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" ibmDfdlExtn:sampleValue="body_value3" minOccurs="0" name="AccountNo" nillable="true" type="xsd:string"/>
+                <xsd:element dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" ibmDfdlExtn:sampleValue="body_value3" minOccurs="0" name="FromDate" nillable="true" type="xsd:string"/>
+                <xsd:element dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:terminator="" dfdl:useNilForDefault="yes" ibmDfdlExtn:sampleValue="body_value3" minOccurs="0" name="ToDate" nillable="true" type="xsd:string"/>
+                                              <xsd:element name="NumTransactions" type="xsd:string"/>
+                            </xsd:sequence>
+                        </xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+</xsd:schema>

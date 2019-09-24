@@ -1,0 +1,59 @@
+BROKER SCHEMA ThirdPartyFundsTransfer
+
+
+CREATE COMPUTE MODULE SetEnvFundsTransfer3PFT
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		
+--		Set Environment.Variables.ServiceVariables.OperationName=InputRoot.JSON.Data.FundsTransfer3PFTOperationName;
+--		Set Environment.Variables.ServiceVariables.VersionName = InputRoot.JSON.Data.FundsTransfer3PFTVersionName;
+--		Set Environment.Variables.ServiceVariables.VersionOperation=InputRoot.JSON.Data.FundsTransfer3PFTVersionOperation;
+--		Set Environment.Variables.ServiceVariables.VersionFunction = InputRoot.JSON.Data.FundsTransfer3PFTVersionFunction;
+--		Set Environment.Variables.ServiceVariables.OrderingBank=InputRoot.JSON.Data.FundsTransfer3PFTOrderingBank;
+--		Set Environment.Variables.ServiceVariables.CompanyCode=InputRoot.JSON.Data.FundsTransfer3PFTCompanyCode;
+		--KEEP COMMENTED Set Environment.Variables.ServiceVariables.TransactionId = InputRoot.JSON.Data.FundsTransfer3PFTTransactionId;
+		
+		Set Environment.Variables.OFSCredentials.username=getCacheValue('OFSCredentialsUsername');
+		Set Environment.Variables.OFSCredentials.password=getCacheValue('OFSCredentialsPassword');
+		
+		Set Environment.Variables.ServiceVariables.OperationName=getCacheValue('FundsTransfer3PFTOperationName');
+		Set Environment.Variables.ServiceVariables.VersionName = getCacheValue('FundsTransfer3PFTVersionName');
+		Set Environment.Variables.ServiceVariables.VersionOperation=getCacheValue('FundsTransfer3PFTVersionOperation');
+		Set Environment.Variables.ServiceVariables.VersionFunction = getCacheValue('FundsTransfer3PFTVersionFunction');
+		Set Environment.Variables.ServiceVariables.OrderingBank=getCacheValue('FundsTransfer3PFTOrderingBank');
+		Set Environment.Variables.ServiceVariables.CompanyCode=getCacheValue('FundsTransfer3PFTCompanyCode');
+		
+		if NOT EXISTS(Environment.Variables.RequestMessage.*:InitiateTransfer.*:FundsTransferRequest.Posted[]) then 
+			Set Environment.Variables.Posted='';
+		else 
+		Set Environment.Variables.Posted=Environment.Variables.RequestMessage.*:InitiateTransfer.*:FundsTransferRequest.Posted;
+		end if;
+		
+		Set Environment.Variables.ProcCode=Environment.Variables.RequestMessage.*:InitiateTransfer.*:FundsTransferRequest.ProcCode;
+		Set Environment.Variables.ProcCodeType=getCacheValue(Environment.Variables.RequestMessage.*:InitiateTransfer.*:FundsTransferRequest.ProcCode||'Type');
+		Set Environment.Variables.RetryString=getCacheValue(Environment.Variables.RequestMessage.*:InitiateTransfer.*:FundsTransferRequest.ProcCode||'Retries');
+		
+		RETURN TRUE;
+	END;
+	
+	CREATE PROCEDURE getCacheValue(IN chrKey CHARACTER)
+	RETURNS CHARACTER
+	LANGUAGE JAVA
+	EXTERNAL NAME "cache.CacheUtil.getValue";
+	
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

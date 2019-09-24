@@ -1,0 +1,17 @@
+
+
+Importing file: D:\Git Repo\baflesb\iib\SOA_DB_Project\IIBDBDEV.dbm
+
+
+Processing schema BAFL.
+Creating complex type for table SOA_AUDITLOG.
+Creating global element for table SOA_AUDITLOG.
+Creating file \SharedModules\iibdbdev\bafl\IIBDBDEV.xsd in the workspace.
+
+Elapsed time processing this message definition file: 9.831 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

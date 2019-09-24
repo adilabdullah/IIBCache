@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="SharedModules" version="8.0.5.0" xmlns:map="SharedModules">
+    <input path="jar:file://!com/ibm/etools/mft/map/xsds/assembly/Environment.xsd" var="var"/>
+    <input path="mbsharedlib://PHXGDCILib/GDCI_LoginMessage.xsd" var="var1"/>
+    <input path="/LogonSchema.xsd" var="var4"/>
+    <input path="/LogonSchema.xsd" var="var5"/>
+    <output path="jar:file://!com/ibm/etools/mft/map/xsds/assembly/Environment.xsd" var="var2"/>
+    <output path="mbsharedlib://PHXGDCILib/GDCI_LoginMessage.xsd" var="var3"/>
+    <imports>
+        <import kind="java" location="IBFTMessageTransform" namespace="xalan://IBFTMessageTransform"/>
+        <import kind="java" location="LogonMessageTransformation" namespace="xalan://LogonMessageTransformation"/>
+    </imports>
+    <namespaces>
+        <namespace kind="extension" prefix="IBFTMessageTransform" uri="xalan://IBFTMessageTransform"/>
+        <namespace kind="extension" prefix="LogonMessageTransformation" uri="xalan://LogonMessageTransformation"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="DataManipulationWithTime">
+        <input path="$var/mb:env(Environment)" var="Environment">
+            <cast path="$Environment/Variables/any" qualifier="LogonMessage" ref="var4" var="any"/>
+        </input>
+        <input path="$var1/mb:msg(GDCI_LoginMessage,assembly,DFDL,Properties)" var="ComIbmMessageAssembly_GDCI_LoginMessage"/>
+        <output path="$var2/mb:env(Environment)" var="Environment1">
+            <cast path="$Environment1/Variables/any" qualifier="LogonMessage" ref="var4" var="any1"/>
+        </output>
+        <output path="$var3/mb:msg(GDCI_LoginMessage,assembly,DFDL,Properties)" var="ComIbmMessageAssembly_GDCI_LoginMessage1"/>
+        <passthrough>
+            <input path="$Environment/."/>
+            <output path="$Environment1/."/>
+            <updates/>
+        </passthrough>
+        <customFunction lang="java" ref="LogonMessageTransformation:transmissionDateAndtimeTogether">
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/TransMissionDateAndtime" var="TransMissionDateAndtime"/>
+            <output path="$ComIbmMessageAssembly_GDCI_LoginMessage1/GDCI_LoginMessage/body/TransMissionDateAndtime"/>
+            <param name="dateTime" value="$TransMissionDateAndtime"/>
+        </customFunction>
+        <customFunction lang="java" ref="LogonMessageTransformation:TransactionTime">
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/TransactionTime" var="TransactionTime"/>
+            <output path="$ComIbmMessageAssembly_GDCI_LoginMessage1/GDCI_LoginMessage/body/TransactionTime"/>
+            <param name="time" value="$TransactionTime"/>
+        </customFunction>
+        <customFunction lang="java" ref="LogonMessageTransformation:transactionnDate">
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/TransactionDate" var="TransactionDate"/>
+            <output path="$ComIbmMessageAssembly_GDCI_LoginMessage1/GDCI_LoginMessage/body/TransactionDate"/>
+            <param name="date" value="$TransactionDate"/>
+        </customFunction>
+        <customFunction lang="java" ref="LogonMessageTransformation:GenerateUniqueRRN">
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/RetrievalReferenceNumber" var="RetrievalReferenceNumber"/>
+            <output path="$ComIbmMessageAssembly_GDCI_LoginMessage1/GDCI_LoginMessage/body/RetrievalReferenceNumber"/>
+            <param name="RRN" value="$RetrievalReferenceNumber"/>
+        </customFunction>
+        <move>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/MessageProtocol"/>
+            <output path="$ComIbmMessageAssembly_GDCI_LoginMessage1/GDCI_LoginMessage/body/MessageProtocol"/>
+        </move>
+        <move>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/Version"/>
+            <output path="$ComIbmMessageAssembly_GDCI_LoginMessage1/GDCI_LoginMessage/body/Version"/>
+        </move>
+        <move>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/MessageType"/>
+            <output path="$ComIbmMessageAssembly_GDCI_LoginMessage1/GDCI_LoginMessage/body/MessageType"/>
+        </move>
+        <move>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/FieldInError"/>
+            <output path="$ComIbmMessageAssembly_GDCI_LoginMessage1/GDCI_LoginMessage/body/FieldInError"/>
+        </move>
+        <move>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/DeliveryChannelID"/>
+            <output path="$ComIbmMessageAssembly_GDCI_LoginMessage1/GDCI_LoginMessage/body/DeliveryChannelID"/>
+        </move>
+        <move>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/TransactionCode"/>
+            <output path="$ComIbmMessageAssembly_GDCI_LoginMessage1/GDCI_LoginMessage/body/TransactionCode"/>
+        </move>
+        <move>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/CustomerPINData"/>
+            <output path="$ComIbmMessageAssembly_GDCI_LoginMessage1/GDCI_LoginMessage/body/CustomerPINData"/>
+        </move>
+        <move>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/ChannelPrivateData"/>
+            <output path="$ComIbmMessageAssembly_GDCI_LoginMessage1/GDCI_LoginMessage/body/ChannelPrivateData"/>
+        </move>
+        <move>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/AuthorizationResponseID"/>
+            <output path="$ComIbmMessageAssembly_GDCI_LoginMessage1/GDCI_LoginMessage/body/AuthorizationResponseID"/>
+        </move>
+        <move>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/ResponseCode"/>
+            <output path="$ComIbmMessageAssembly_GDCI_LoginMessage1/GDCI_LoginMessage/body/ResponseCode"/>
+        </move>
+        <move>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/channelPassword"/>
+            <output path="$ComIbmMessageAssembly_GDCI_LoginMessage1/GDCI_LoginMessage/body/channelPassword"/>
+        </move>
+        <move>
+            <input path="$Environment/Variables/LogonMessage[1]/CustomerID"/>
+            <output path="$ComIbmMessageAssembly_GDCI_LoginMessage1/GDCI_LoginMessage/body/CustomerIdentification"/>
+        </move>
+        <move>
+            <input path="$Environment/Variables/LogonMessage[1]/ChannelSpecificDataField" var="ChannelSpecificDataField"/>
+            <output path="$ComIbmMessageAssembly_GDCI_LoginMessage1/GDCI_LoginMessage/body/ChannelSpecificDataField"/>
+        </move>
+        <assign value="00">
+            <output path="$ComIbmMessageAssembly_GDCI_LoginMessage1/GDCI_LoginMessage/body/DeliveryChannelType"/>
+        </assign>
+        <assign value="{PHXGDCILib}">
+            <output path="$ComIbmMessageAssembly_GDCI_LoginMessage1/Properties/MessageSet"/>
+        </assign>
+    </mappingDeclaration>
+</mappingRoot>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:csv="http://www.ibm.com/dfdl/CommaSeparatedFormat" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+
+
+    <xsd:import namespace="http://www.ibm.com/dfdl/CommaSeparatedFormat" schemaLocation="IBMdefined/CommaSeparatedFormat.xsd"/>
+        <xsd:element ibmSchExtn:docRoot="true" name="OFSBankersFetchDetail">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:sequence dfdl:separator="" dfdl:terminator=",">
+          <xsd:element dfdl:terminator="" name="Operation" type="xsd:string"/>
+        </xsd:sequence>
+                <xsd:sequence dfdl:separator="/">
+                              <xsd:sequence dfdl:separator="/" dfdl:terminator="">
+            <xsd:element name="Username" type="xsd:string"/>
+            <xsd:element name="Password" type="xsd:string"/>
+            <xsd:element dfdl:terminator="" name="CompanyCode" type="xsd:string"/>
+          </xsd:sequence>
+                                                                                                                                                                                                                                  </xsd:sequence>
+        <xsd:sequence dfdl:separator="">
+          <xsd:element dfdl:initiator="," name="MessageData">
+            <xsd:complexType>
+              <xsd:sequence>
+                                                                                <xsd:element name="BankersCheque" type="xsd:string"/>
+                                                                                          </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:annotation>
+		<xsd:appinfo source="http://www.ogf.org/dfdl/">
+			<dfdl:format documentFinalTerminatorCanBeMissing="yes" encoding="{$dfdl:encoding}" escapeSchemeRef="csv:CSVEscapeScheme" ref="csv:CommaSeparatedFormat"/>
+		</xsd:appinfo>
+	</xsd:annotation>
+
+
+
+
+</xsd:schema>

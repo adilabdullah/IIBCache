@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:recSepFieldsFmt="http://www.ibm.com/dfdl/RecordSeparatedFieldFormat">
+    <xsd:import namespace="http://www.ibm.com/dfdl/RecordSeparatedFieldFormat" schemaLocation="IBMdefined/RecordSeparatedFieldFormat.xsd"/>
+                        <xsd:annotation>
+		<xsd:appinfo source="http://www.ogf.org/dfdl/">
+			<dfdl:format encoding="{$dfdl:encoding}" escapeSchemeRef="" occursCountKind="implicit" ref="recSepFieldsFmt:RecordSeparatedFieldsFormat"/>
+		</xsd:appinfo>
+	</xsd:annotation>
+
+	<xsd:element ibmSchExtn:docRoot="true" name="OFS3PFTFundsTransfer">
+		<xsd:complexType>
+			<xsd:sequence dfdl:separator="" dfdl:separatorSuppressionPolicy="anyEmpty">
+                							<xsd:element name="body">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:sequence dfdl:separator="">
+                <xsd:element dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" name="Operation" nillable="true" type="xsd:string"/>
+              </xsd:sequence>
+              <xsd:sequence dfdl:separator="/">
+                <xsd:element dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" name="Version" nillable="true" type="xsd:string"/>
+                <xsd:element default="&lt;nil&gt;" dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" name="Function" nillable="true" type="xsd:string"/>
+                <xsd:element dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" name="VersionOperation" nillable="true" type="xsd:string"/>
+              </xsd:sequence>
+              <xsd:sequence dfdl:separator="/">
+                <xsd:element dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" name="SignOn" nillable="true" type="xsd:string"/>
+                <xsd:element dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" name="Password" nillable="true" type="xsd:string"/>
+                <xsd:element dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" name="CompanyCode" nillable="true" type="xsd:string"/>
+              </xsd:sequence>
+              <xsd:sequence dfdl:separator="/">
+                <xsd:element dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" minOccurs="0" name="TransactionID" nillable="true" type="xsd:string"/>
+                <xsd:element dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" minOccurs="0" name="MessageID" nillable="true" type="xsd:string"/>
+              </xsd:sequence>
+              <xsd:sequence dfdl:separator=",">
+                                                                                                                          <xsd:element dfdl:initiator="" maxOccurs="unbounded" name="MessageData">
+                  <xsd:complexType>
+                    <xsd:sequence dfdl:separatorSuppressionPolicy="anyEmpty">
+                                                                  <xsd:element dfdl:emptyValueDelimiterPolicy="none" dfdl:initiator="SOA.CHANNEL.ID:=" name="ChannelId" type="xsd:string"/>
+                                            <xsd:element dfdl:emptyValueDelimiterPolicy="none" dfdl:initiator="DEBIT.ACCT.NO:=" name="DebitAccountNumber" type="xsd:string"/>
+                                                                                                                                                                                                                                                                                                                    <xsd:element dfdl:emptyValueDelimiterPolicy="none" dfdl:initiator="DEBIT.ACCT.BR=" name="DebitBranchCode" type="xsd:string"/>
+                                            <xsd:element dfdl:emptyValueDelimiterPolicy="none" dfdl:initiator="CREDIT.ACCT.NO:=" name="CreditAccountNumber" type="xsd:string"/>
+                                                                                        <xsd:element dfdl:emptyValueDelimiterPolicy="none" dfdl:initiator="CREDIT.ACCT.BR=" name="CreditBranchCode" type="xsd:string"/>
+                                            <xsd:element dfdl:emptyValueDelimiterPolicy="none" dfdl:initiator="DEBIT.THEIR.REF:=" name="DebitRef" type="xsd:string"/>
+                                                                                                                                                                                                                                                  <xsd:element dfdl:emptyValueDelimiterPolicy="none" dfdl:initiator="DEBIT.CURRENCY:=" dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:nilValueDelimiterPolicy="none" dfdl:useNilForDefault="yes" minOccurs="0" name="DebitCurrency" nillable="true" type="xsd:string"/>
+                                                                                                                                    <xsd:element dfdl:emptyValueDelimiterPolicy="none" dfdl:initiator="CREDIT.CURRENCY:=" dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:nilValueDelimiterPolicy="none" dfdl:useNilForDefault="yes" minOccurs="0" name="CreditCurrency" nillable="true" type="xsd:string"/>
+                                                                                                                                                                                                                            <xsd:element dfdl:emptyValueDelimiterPolicy="none" dfdl:initiator="CREDIT.THEIR.REF:=" name="CreditRef" type="xsd:string"/>
+                                                                                                                                                                                                                            <xsd:element dfdl:emptyValueDelimiterPolicy="none" dfdl:initiator="ORDERING.BANK:=" name="OrderingBank" type="xsd:string"/>
+                                                                                                                                                                                                      <xsd:element dfdl:emptyValueDelimiterPolicy="none" dfdl:initiator="AT.UNIQUE.ID:=" name="UniqueID" type="xsd:string"/>
+                                                                                                                                                                                                                                                                                                          <xsd:element dfdl:emptyValueDelimiterPolicy="none" dfdl:initiator="DEBIT.AMOUNT:=" name="DebitAmount" type="xsd:string"/>
+                                                                                        <xsd:element dfdl:emptyValueDelimiterPolicy="none" dfdl:initiator="PHX.STAN.NO:=" dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:nilValueDelimiterPolicy="none" dfdl:useNilForDefault="yes" minOccurs="0" name="Stan" nillable="true" type="xsd:string"/>
+                                            <xsd:element dfdl:emptyValueDelimiterPolicy="none" dfdl:initiator="PHX.PAN.NO:=" dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:nilValueDelimiterPolicy="none" dfdl:useNilForDefault="yes" minOccurs="0" name="Pan" nillable="true" type="xsd:string"/>
+                                                                                        <xsd:element dfdl:emptyValueDelimiterPolicy="none" dfdl:initiator="CHEQUE.NUMBER:=" dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:nilValueDelimiterPolicy="none" dfdl:useNilForDefault="yes" minOccurs="0" name="ChequeNumber" nillable="true" type="xsd:string"/>
+                                            <xsd:element dfdl:emptyValueDelimiterPolicy="none" dfdl:initiator="SOA.COMM.CNT:=" name="CommissionCount" type="xsd:string"/>
+                                                                                                                                                                                                                                                                        <xsd:element maxOccurs="unbounded" minOccurs="0" name="Commission">
+                        <xsd:complexType>
+                          <xsd:sequence>
+                            <xsd:element dfdl:emptyValueDelimiterPolicy="none" dfdl:initiator="COMMISSION.TYPE:" name="CommissionType" type="xsd:string"/>
+                            <xsd:element dfdl:emptyValueDelimiterPolicy="none" dfdl:initiator="COMMISSION.AMT:" name="CommissionAmount" type="xsd:string"/>
+                                                                                                                                      </xsd:sequence>
+                        </xsd:complexType>
+                      </xsd:element>
+                                                                                                                                                                                                                    <xsd:element dfdl:emptyValueDelimiterPolicy="none" dfdl:initiator="TRANSACTION.TYPE:=" dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:nilValueDelimiterPolicy="none" dfdl:useNilForDefault="yes" minOccurs="0" name="TransactionType" nillable="true" type="xsd:string"/>
+                                            <xsd:element dfdl:emptyValueDelimiterPolicy="none" dfdl:initiator="PROFIT.CENTRE.DEPT:=" dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:nilValueDelimiterPolicy="none" dfdl:useNilForDefault="yes" minOccurs="0" name="ProfitCentreDept" nillable="true" type="xsd:string"/>
+                                        </xsd:sequence>
+                  </xsd:complexType>
+                </xsd:element>
+                            </xsd:sequence>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+                                                                </xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+</xsd:schema>

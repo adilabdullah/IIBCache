@@ -1,0 +1,24 @@
+BROKER SCHEMA AccountService
+
+
+CREATE COMPUTE MODULE SetEnvIntegrateSnaPackAccounts_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+	
+		Set Environment.Variables.ServiceVariables.OperationName=getCacheValue('AccountServiceOperationName');
+		Set Environment.Variables.ServiceVariables.Version=getCacheValue('AccountServiceVersionNameForPLCurrentKids');
+		Set Environment.Variables.ServiceVariables.VersionFunction=getCacheValue('AccountServiceVersionFunction');
+		Set Environment.Variables.ServiceVariables.VersionOperation=getCacheValue('AccountServiceVersionOperation');
+		Set Environment.Variables.OFSCredentials.username=getCacheValue('OFSCredentialsUsername');
+		Set Environment.Variables.OFSCredentials.password=getCacheValue('OFSCredentialsPassword');
+		--Set Environment.Variables.ServiceVariables.CompanyCode=getCacheValue('ActivateAccountNormalCompanyCode');
+		
+		RETURN TRUE;
+	END;
+
+CREATE PROCEDURE getCacheValue(IN chrKey CHARACTER)
+	RETURNS CHARACTER
+	LANGUAGE JAVA
+	EXTERNAL NAME "cache.CacheUtil.getValue";
+	
+END MODULE;

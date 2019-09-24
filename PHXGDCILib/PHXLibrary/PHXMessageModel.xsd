@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:recFixLengthFieldsFmt="http://www.ibm.com/dfdl/RecordFixLengthFieldFormat">
+
+    <xsd:import namespace="http://www.ibm.com/dfdl/RecordFixLengthFieldFormat" schemaLocation="IBMdefined/RecordFixLengthFieldFormat.xsd"/>
+    <xsd:annotation>
+		<xsd:appinfo source="http://www.ogf.org/dfdl/">
+			<dfdl:format encoding="{$dfdl:encoding}" escapeSchemeRef="" occursCountKind="fixed" ref="recFixLengthFieldsFmt:RecordFixLengthFieldsFormat"/>
+		</xsd:appinfo>
+	</xsd:annotation>
+
+	<xsd:element dfdl:encoding="UTF-8" dfdl:lengthKind="delimited" ibmSchExtn:docRoot="true" name="PHXMessageModel">
+		<xsd:complexType>
+			<xsd:sequence dfdl:separator="" dfdl:separatorSuppressionPolicy="anyEmpty">
+				<xsd:element dfdl:lengthKind="delimited" name="header">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element dfdl:length="7" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="head_valu1" name="ApplMsgProtocol" type="xsd:string"/>
+							<xsd:element dfdl:length="2" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="head_valu2" name="Product" type="xsd:string"/>
+							<xsd:element dfdl:length="2" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="head_valu3" name="Version" type="xsd:string"/>
+                            <xsd:element dfdl:length="3" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="head_value4" name="FiledInError" type="xsd:string"/>
+                            <xsd:element dfdl:length="1" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="head_value5" name="AcqType" type="xsd:string"/>
+                            <xsd:element dfdl:length="1" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="head_value6" name="IssType" type="xsd:string"/>
+                            <xsd:element dfdl:length="10" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="head_value7" name="Reserved" type="xsd:string"/>
+                            <xsd:element dfdl:length="14" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="head_value8" name="MsgTime" type="xsd:string"/>
+                                                    <xsd:element dfdl:length="4" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" name="MsgType" type="xsd:string"/>
+                        </xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element dfdl:lengthKind="delimited" name="body">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element dfdl:length="20" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_valu1" name="PrimaryAccountNumber" type="xsd:string"/>
+							<xsd:element dfdl:length="6" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_valu2" name="ProcessingCode" type="xsd:string"/>
+							<xsd:element dfdl:length="12" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_valu3" name="AmountTransaction" type="xsd:string"/>
+                            <xsd:element dfdl:length="12" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value4" name="AmountSettlement" type="xsd:string"/>
+                            <xsd:element dfdl:length="12" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value5" name="AmountCardholderBilling" type="xsd:string"/>
+                            <xsd:element dfdl:length="10" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value6" name="TrransmissionDateTime" type="xsd:string"/>
+                            <xsd:element dfdl:length="8" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value7" name="ConversionRateSettlement" type="xsd:string"/>
+                            <xsd:element dfdl:length="8" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value8" name="TransacrtionFee" type="xsd:string"/>
+                            <xsd:element dfdl:length="6" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value9" name="SystemTraceAuditNumber" type="xsd:string"/>
+                            <xsd:element dfdl:length="6" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value10" name="TimeLocalTransaction" type="xsd:string"/>
+                            <xsd:element dfdl:length="4" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value11" name="DateLocalTransaction" type="xsd:string"/>
+                            <xsd:element dfdl:length="4" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value12" name="DateExpiration" type="xsd:string"/>
+                            <xsd:element dfdl:length="4" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value13" name="DateSettlement" type="xsd:string"/>
+                            <xsd:element dfdl:length="4" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value14" name="DateConversion" type="xsd:string"/>
+                            <xsd:element dfdl:length="4" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value15" name="DateCapture" type="xsd:string"/>
+                            <xsd:element dfdl:length="4" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value16" name="MerchantType" type="xsd:string"/>
+                            <xsd:element dfdl:length="3" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value17" name="AcquiringInstitutionCountryCode" type="xsd:string"/>
+                            <xsd:element dfdl:length="3" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value18" name="PANCountryCode" type="xsd:string"/>
+                            <xsd:element dfdl:length="3" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value19" name="POSEntryMode" type="xsd:string"/>
+                            <xsd:element dfdl:length="2" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value20" name="POSConditionCode" type="xsd:string"/>
+                            <xsd:element dfdl:length="2" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value21" name="POSPINCaptureCode" type="xsd:string"/>
+                            <xsd:element dfdl:length="11" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value22" name="AcquiringInstitutionIdentificationCode" type="xsd:string"/>
+                            <xsd:element dfdl:length="11" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value23" name="ForwardingInstitutionIdentificationCode" type="xsd:string"/>
+                            <xsd:element dfdl:length="37" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value24" name="Track2Data" type="xsd:string"/>
+                            <xsd:element dfdl:length="104" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value25" name="Track3Data" type="xsd:string"/>
+                            <xsd:element dfdl:length="12" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value26" name="RetrievalReferenceNumber" type="xsd:string"/>
+                            <xsd:element dfdl:length="6" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value27" name="AuthorizationIdentificationResponse" type="xsd:string"/>
+                            <xsd:element dfdl:length="2" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value28" name="ResponseCode" type="xsd:string"/>
+                            <xsd:element dfdl:length="16" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value29" name="CardAcceptorTerminalIdentification" type="xsd:string"/>
+                            <xsd:element dfdl:length="15" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value30" name="CardAcceptorIdentificationCode" type="xsd:string"/>
+                            <xsd:element dfdl:length="40" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value31" name="CardAcceptorNameLocation" type="xsd:string"/>
+                            <xsd:element dfdl:length="25" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value32" name="AdditionalResponseData" type="xsd:string"/>
+                            <xsd:element dfdl:length="76" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value33" name="Track1Data" type="xsd:string"/>
+                            <xsd:element dfdl:length="44" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value34" name="AdditionalData" type="xsd:string"/>
+                            <xsd:element dfdl:length="3" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value35" name="CurrencyCodeTransaction" type="xsd:string"/>
+                            <xsd:element dfdl:length="3" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value36" name="CurrencyCodeSettlement" type="xsd:string"/>
+                            <xsd:element dfdl:length="3" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value37" name="CurrnencyCodeCustomerBilling" type="xsd:string"/>
+                            <xsd:element dfdl:length="16" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value38" name="PINData" type="xsd:string"/>
+                            <xsd:element dfdl:length="16" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value39" name="SecurityRelatedControlInformation" type="xsd:string"/>
+                            <xsd:element dfdl:length="16" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value40" name="AdditionalAmounts" type="xsd:string"/>
+                            <xsd:element dfdl:length="16" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value41" name="TerminalData" type="xsd:string"/>
+                            <xsd:element dfdl:length="19" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value42" name="POSCardIssuerCategoryResponseCodeData" type="xsd:string"/>
+                            <xsd:element dfdl:length="6" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value43" name="DateAction" type="xsd:string"/>
+                            <xsd:element dfdl:length="42" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value44" name="OriginalDataElements" type="xsd:string"/>
+                            <xsd:element dfdl:length="42" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value45" name="ReplacementAmounts" type="xsd:string"/>
+                            <xsd:element dfdl:length="11" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value46" name="ReceivingInstitutionIDCode" type="xsd:string"/>
+                            <xsd:element dfdl:length="28" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value47" name="AccountIdentification1" type="xsd:string"/>
+                            <xsd:element dfdl:length="28" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value48" name="AccountIdentification2" type="xsd:string"/>
+                            <xsd:element dfdl:length="30" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value49" name="TransactionDescription" type="xsd:string"/>
+                            <xsd:element dfdl:length="400" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value50" name="RecordData" type="xsd:string"/>
+                            <xsd:element dfdl:length="23" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value51" name="POSAuthorizationIndiciators" type="xsd:string"/>
+                            <xsd:element dfdl:length="12" dfdl:lengthUnits="characters" dfdl:textTrimKind="none" ibmDfdlExtn:sampleValue="body_value52" name="POSSettlementData" type="xsd:string"/>
+                        </xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+
+</xsd:schema>

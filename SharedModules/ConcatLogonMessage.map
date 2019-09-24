@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="default" version="8.0.5.0" xmlns:map="default">
+    <input path="mbsharedlib://PHXGDCILib/stringMessage.xsd"/>
+    <output path="jar:file://!com/ibm/etools/mft/map/xsds/predefined/BlobMessage.xsd"/>
+    <imports>
+        <import kind="java" location="MessageTransform" namespace="xalan://MessageTransform"/>
+        <import kind="java" location="MessageTransformation" namespace="xalan://MessageTransformation"/>
+        <import kind="java" location="LogonMessageTransformation" namespace="xalan://LogonMessageTransformation"/>
+    </imports>
+    <namespaces>
+        <namespace kind="extension" prefix="MessageTransform" uri="xalan://MessageTransform"/>
+        <namespace kind="extension" prefix="MessageTransformation" uri="xalan://MessageTransformation"/>
+        <namespace kind="extension" prefix="LogonMessageTransformation" uri="xalan://LogonMessageTransformation"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="ConcatLogonMessage">
+        <input path="mb:msg(concatMessage,assembly,XMLNSC,Properties)" var="MessageAssembly"/>
+        <output path="mb:msg(BLOB,assembly,BLOB,Properties)" var="MessageAssembly1"/>
+        <customFunction lang="java" ref="LogonMessageTransformation:StringToByteStream">
+            <input path="$MessageAssembly/concatMessage/message" var="message"/>
+            <output path="$MessageAssembly1/BLOB/text()"/>
+            <param name="params" value="$message"/>
+        </customFunction>
+        <move>
+            <input path="$MessageAssembly/Properties"/>
+            <output path="$MessageAssembly1/Properties"/>
+        </move>
+    </mappingDeclaration>
+</mappingRoot>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="FundsTransferPHXTitleFetch" version="8.0.5.0" xmlns:map="FundsTransferPHXTitleFetch">
+    <input path="mbsharedlib://PHXGDCILib/TitleFetchBody.xsd"/>
+    <output path="mbsharedlib://PHXGDCILib/PHXLibrary/GDCI_TitleFetch_Response.xsd"/>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="PHXTitleFetchSubflow_Mapping1">
+        <input path="mb:msg(TitleFetchBody,assembly,DFDL,Properties)" var="ComIbmMessageAssembly_TitleFetchBody"/>
+        <output path="mb:msg(GDCI_TitleFetch_Response,assembly,DFDL,Properties)" var="ComIbmMessageAssembly_GDCI_TitleFetch_Response"/>
+        <move>
+            <input path="$ComIbmMessageAssembly_TitleFetchBody/Properties"/>
+            <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/Properties"/>
+            <override>
+                <assign value="{PHXGDCILib}">
+                    <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/Properties/MessageSet"/>
+                </assign>
+                <assign value="{}:GDCI_TitleFetch_Response">
+                    <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/Properties/MessageType"/>
+                </assign>
+            </override>
+        </move>
+        <move>
+            <input path="$ComIbmMessageAssembly_TitleFetchBody/TitleFetchBody/AccountBankIMD"/>
+            <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/GDCI_TitleFetch_Response/body/BankIMD"/>
+        </move>
+        <move>
+            <input path="$ComIbmMessageAssembly_TitleFetchBody/TitleFetchBody/AccountDetails"/>
+            <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/GDCI_TitleFetch_Response/body/AccountDetails"/>
+        </move>
+        <move>
+            <input path="$ComIbmMessageAssembly_TitleFetchBody/TitleFetchBody/AccountTitle"/>
+            <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/GDCI_TitleFetch_Response/body/AccountTitle"/>
+        </move>
+        <assign value="00">
+            <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/GDCI_TitleFetch_Response/TransactionResponseHeader/ResponseCode"/>
+        </assign>
+    </mappingDeclaration>
+</mappingRoot>

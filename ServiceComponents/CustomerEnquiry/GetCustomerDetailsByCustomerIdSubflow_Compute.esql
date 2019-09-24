@@ -1,0 +1,35 @@
+BROKER SCHEMA CustomerEnquiry
+
+
+CREATE COMPUTE MODULE GetCustomerDetailsByCustomerIdSubflow_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE data CHARACTER '';
+		DECLARE dl CHARACTER '';
+		SET data=REPLACE(CAST(InputRoot.BLOB.BLOB AS CHARACTER CCSID 1208 ENCODING 546),'><""><','');
+	--	SET data=REPLACE(data,',<""><','');
+		SET data=REPLACE(data,'><"">,','');
+		SET data=REPLACE(data,',<"">,','');
+	--	SET data=REPLACE(data,',ü,','');
+	--    SET dl=myProc1(CAST(data AS CHARACTER CCSID 1208 ENCODING 546));
+	--	SET OutputRoot.BLOB.BLOB=CAST(REPLACE(CAST(InputRoot.BLOB.BLOB AS CHARACTER CCSID 1208 ENCODING 546),'><""><','') AS BLOB CCSID 1208 ENCODING 546); 
+		SET OutputRoot.BLOB.BLOB=CAST(data AS BLOB CCSID 1208 ENCODING 546);
+		RETURN TRUE;
+	END;
+
+
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

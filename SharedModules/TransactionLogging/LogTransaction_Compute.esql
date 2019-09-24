@@ -1,0 +1,56 @@
+BROKER SCHEMA TransactionLogging
+
+
+CREATE COMPUTE MODULE LogTransaction_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+
+		DECLARE RequestMessage REFERENCE TO Environment.Variables.RequestMessage;
+		move RequestMessage FIRSTCHILD; move RequestMessage FIRSTCHILD; 
+		
+		DECLARE ResponseMsg character '';
+		set ResponseMsg = CAST( ASBITSTREAM(InputBody CCSID 1208 ENCODING 546) AS CHARACTER CCSID 1208);
+		DECLARE ResponseCode CHARACTER InputRoot.XMLNSC.*.*.ResponseCode;
+		DECLARE ResponseDescription CHARACTER InputRoot.XMLNSC.*.*.ResponseDescription;
+		
+		DECLARE commissionDetailString CHARACTER '';
+		for temp_row as RequestMessage.CommissionDetail[] do
+			set commissionDetailString = commissionDetailString|| '(Type: '||FIELDVALUE(temp_row.CommissionType)||', Amount: '||FIELDVALUE(temp_row.CommissionAmount)||')';
+		end for;
+		
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.CHANNEL_ID=RequestMessage.ChannelId;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.DELIVERY_CHANNEL_TYPE=RequestMessage.DeliveryChannelType;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.CUSTOMER_ID=RequestMessage.CustomerID;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.CHANNEL_SPECIFIC_DATA_FIELD=RequestMessage.ChannelSpecificDataField;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.FROM_ACCOUNT_BANK_IMD =RequestMessage.fromAccountBankIMD;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.FROM_ACCOUNT_NUMBER =RequestMessage.fromAccountnumber;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.FROM_ACCOUNT_TYPE =RequestMessage.fromAccountType;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.FROM_ACCOUNT_CURRENCY =RequestMessage.fromAccountCurrency;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.TO_ACCOUNT_IMD =RequestMessage.toAccountBankIMD;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.TO_ACCOUNT_NUMBER =RequestMessage.toAccountNumber;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.TO_ACCOUNT_TYPE =RequestMessage.toAccountType;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.TO_ACCOUNT_CURRENCY =RequestMessage.toAccountCurrency;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.IBAN =RequestMessage.IBAN;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.TRAN_AMOUNT =RequestMessage.transactionAmount;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.TRAN_CURRENCY =RequestMessage.transactionCurrency;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.TRAN_FEE =RequestMessage.tranFee;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.DEBIT_REF =RequestMessage.DebitReference;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.CREDIT_REF =RequestMessage.CreditReference;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.RETRIEVAL_REF_NUMBER =RequestMessage.RetrievalReferenceNumber;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.COMMISSION_DETAIL =commissionDetailString;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.TRAN_TYPE =RequestMessage.TransactionType;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.PROFIT_CENTRE_DEPT =RequestMessage.ProfitCentreDept;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.PROC_CODE =RequestMessage.ProcCode;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.REQUEST_TIMESTAMP=Environment.Variables.RequestTimestamp; 
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.RESPONSE_TIMESTAMP =CAST(CURRENT_TIMESTAMP AS CHARACTER FORMAT 'MM-dd-yyyy HH:mm:ss');
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.RESPONSE_CODE =ResponseCode;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.RESPONSE_DESCRIPTION =ResponseDescription;
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.EXCEPTION ='';
+		SET OutputRoot.XMLNSC.SOA_TRANSACTION.RETRIES_COUNT ='0';
+		
+		
+		RETURN TRUE;
+	END;
+
+
+END MODULE;

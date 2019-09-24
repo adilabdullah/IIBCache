@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+
+
+    <xsd:complexType name="AccountsInfo">
+    	<xsd:sequence>
+    		<xsd:element name="fromAccountBankIMD" type="xsd:string"></xsd:element>
+    		<xsd:element name="fromAccountnumber" type="xsd:string"></xsd:element>
+    		<xsd:element name="fromAccountType" type="xsd:string"></xsd:element>
+    		<xsd:element name="fromAccountCurrency" type="xsd:string"></xsd:element>
+    		<xsd:element name="toAccountBankIMD" type="xsd:string"></xsd:element>
+    		<xsd:element name="toAccountNumber" type="xsd:string"></xsd:element>
+    		<xsd:element name="toAccountType" type="xsd:string"></xsd:element>
+    		<xsd:element name="toAccountCurrency" type="xsd:string"></xsd:element>
+    		<xsd:element name="IBAN" type="xsd:string"></xsd:element>
+    		<xsd:element name="transactionAmount" type="xsd:string"></xsd:element>
+    		<xsd:element name="transactionCurrency" type="xsd:string"></xsd:element>
+    		<xsd:element name="tranFee" type="xsd:string"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="accountDetail" type="AccountsInfo"></xsd:element>
+</xsd:schema>

@@ -1,0 +1,71 @@
+BROKER SCHEMA SharedModules
+
+
+CREATE COMPUTE MODULE LogonToPheonix_Compute2
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		
+		
+		SET OutputRoot = InputRoot;
+		
+		DECLARE xy CHARACTER;
+		SET xy = '000000000000';
+		DECLARE t,le INT;
+		SET t=0;
+		
+		DECLARE temp CHARACTER;
+		SET temp = Environment.Variables.FundsTransferRequest.RetrievalReferenceNumber;
+		
+		SET le = LENGTH(temp);
+		
+		IF le > 0 AND le < 12 THEN
+			SET t=12-le;
+			SET temp = temp || SUBSTRING (xy FROM 1 FOR t);
+		ELSEIF le > 12 THEN
+			SET temp = SUBSTRING (temp FROM 1 FOR 12);
+		ELSE 	
+			SET temp = CAST(CURRENT_TIMESTAMP AS CHARACTER FORMAT 'MMddHHmmssSS');
+		END IF;
+		
+		
+		SET OutputRoot.DFDL.GDCI_LoginMessage.body.RetrievalReferenceNumber = temp;
+		SET Environment.Variables.FundsTransferRequest.RetrievalReferenceNumber = temp; 
+		SET Environment.Variables.TransactionRequestHeader.RetrievalReferenceNumber = temp;
+		SET Environment.Variables.InitiateTransfer.FundsTransferRequest.RetrievalReferenceNumber = temp;
+		
+		
+		
+		SET Environment.Variables.TransactionRequestHeader.TransactionDate = CAST(CURRENT_TIMESTAMP AS CHARACTER FORMAT 'yyyyMMdd');
+		SET OutputRoot.DFDL.GDCI_LoginMessage.body.TransactionDate = Environment.Variables.TransactionRequestHeader.TransactionDate;
+		
+		SET Environment.Variables.TransactionRequestHeader.TransactionTime = CAST(CURRENT_TIMESTAMP AS CHARACTER FORMAT 'HHmmss');
+		SET OutputRoot.DFDL.GDCI_LoginMessage.body.TransactionTime = Environment.Variables.TransactionRequestHeader.TransactionTime;
+		
+		SET Environment.Variables.TransactionRequestHeader.TransMissionDateAndtime = CAST(CURRENT_TIMESTAMP AS CHARACTER FORMAT 'yyyyMMddHHmmss');
+		SET OutputRoot.DFDL.GDCI_LoginMessage.body.TransMissionDateAndtime = Environment.Variables.TransactionRequestHeader.TransMissionDateAndtime;
+		
+		SET OutputRoot.DFDL.GDCI_LoginMessage.body.DeliveryChannelType = Environment.Variables.LogonMessage.DeliveryChannelType;
+		SET OutputRoot.DFDL.GDCI_LoginMessage.body.ChannelSpecificDataField = Environment.Variables.LogonMessage.ChannelSpecificDataField;
+		SET OutputRoot.DFDL.GDCI_LoginMessage.body.CustomerIdentification = Environment.Variables.LogonMessage.CustomerID;
+		
+		
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

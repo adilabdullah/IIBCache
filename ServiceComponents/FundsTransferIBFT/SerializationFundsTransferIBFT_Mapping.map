@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="FundsTransferIBFT" version="8.0.5.0" xmlns:map="FundsTransferIBFT">
+    <input path="jar:file://!com/ibm/etools/mft/map/xsds/assembly/Environment.xsd" var="var1"/>
+    <input path="mbsharedlib://PHXGDCILib/PHXLibrary/GDCI_IBFT_Request.xsd" var="var2"/>
+    <input path="mbsharedlib://SharedModules/ServiceVariables.xsd" var="var"/>
+    <input path="mbsharedlib://SharedModules/ServiceVariables.xsd" var="var3"/>
+    <output path="jar:file://!com/ibm/etools/mft/map/xsds/assembly/Environment.xsd" var="var4"/>
+    <output path="mbsharedlib://PHXGDCILib/PHXLibrary/GDCI_IBFT_Request.xsd" var="var5"/>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="SerializationFundsTransferIBFT_Mapping">
+        <input path="$var1/mb:env(Environment)" var="Environment">
+            <cast path="$Environment/Variables/any" qualifier="ServiceVariables" ref="var" var="any"/>
+        </input>
+        <input path="$var2/mb:msg(GDCI_IBFT_Request,assembly,DFDL,Properties)" var="ComIbmMessageAssembly_GDCI_IBFT_Request"/>
+        <output path="$var4/mb:env(Environment)" var="Environment1">
+            <cast path="$Environment1/Variables/any" qualifier="ServiceVariables" ref="var" var="any1"/>
+        </output>
+        <output path="$var5/mb:msg(GDCI_IBFT_Request,assembly,DFDL,LocalEnvironment,Properties)" var="ComIbmMessageAssembly_GDCI_IBFT_Request1"/>
+        <passthrough>
+            <input path="$Environment/."/>
+            <output path="$Environment1/."/>
+            <updates/>
+        </passthrough>
+        <move>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/Properties"/>
+            <output path="$ComIbmMessageAssembly_GDCI_IBFT_Request1/Properties"/>
+            <override>
+                <assign value="{PHXGDCILib}">
+                    <output path="$ComIbmMessageAssembly_GDCI_IBFT_Request1/Properties/MessageSet"/>
+                </assign>
+                <assign value="{}:GDCI_IBFT_Request">
+                    <output path="$ComIbmMessageAssembly_GDCI_IBFT_Request1/Properties/MessageType"/>
+                </assign>
+            </override>
+        </move>
+        <move>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request"/>
+            <output path="$ComIbmMessageAssembly_GDCI_IBFT_Request1/GDCI_IBFT_Request"/>
+        </move>
+        <assign value="D:\">
+            <output path="$ComIbmMessageAssembly_GDCI_IBFT_Request1/LocalEnvironment/Destination/File/Directory"/>
+        </assign>
+        <move>
+            <input path="$Environment/Variables/ServiceVariables/UniqueId"/>
+            <output path="$ComIbmMessageAssembly_GDCI_IBFT_Request1/LocalEnvironment/Destination/File/Name"/>
+        </move>
+        <move>
+            <input path="$Environment/Variables/ServiceVariables/UniqueId"/>
+            <output path="$ComIbmMessageAssembly_GDCI_IBFT_Request1/LocalEnvironment/File/Read/Name"/>
+        </move>
+        <assign value="D:\">
+            <output path="$ComIbmMessageAssembly_GDCI_IBFT_Request1/LocalEnvironment/File/Read/Directory"/>
+        </assign>
+    </mappingDeclaration>
+</mappingRoot>

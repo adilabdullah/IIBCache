@@ -1,0 +1,14 @@
+BROKER SCHEMA FundsTransferPHXTitleFetch
+
+
+CREATE FILTER MODULE PHXTitleFetchSubflow_Filter1
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		IF Root.DFDL.TransactionResponseHeader.ResponseCode ='00' THEN
+      		RETURN TRUE;
+		ELSE
+			RETURN FALSE;
+   		END IF;
+	END;
+
+END MODULE;

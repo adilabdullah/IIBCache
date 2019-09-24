@@ -1,0 +1,94 @@
+
+
+BROKER SCHEMA AccountService
+
+
+CREATE COMPUTE MODULE SetEnvValidateAccount_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		Set Environment.Variables.OFSCredentials.username=getCacheValue('OFSCredentialsUsername');
+		Set Environment.Variables.OFSCredentials.password=getCacheValue('OFSCredentialsPassword');
+		Set Environment.Variables.ServiceVariables.OperationName=getCacheValue('AccountServiceOperationName');
+		Set Environment.Variables.ServiceVariables.VersionOperation=getCacheValue('AccountServiceValidateVersionOperation');
+		Set Environment.Variables.ServiceVariables.VersionFunction = getCacheValue('AccountServiceVersionFunction');
+		Set Environment.Variables.ServiceVariables.OrderingBank=getCacheValue('AccountServiceOrderingBank');
+		Set Environment.Variables.ServiceVariables.CompanyCode=getCacheValue('AccountServiceCompanyCode');		
+
+
+
+		DECLARE AccountType REFERENCE to Environment.Variables.RequestMessage.*:ValidateAccount.*:ValidateAccountRequest.BasicAccountDetails.AccountType;
+		DECLARE ProductCode REFERENCE to Environment.Variables.RequestMessage.*:ValidateAccount.*:ValidateAccountRequest.BasicAccountDetails.ProductCode;
+		--DECLARE Product CHAR FIELDVALUE(Prod);
+		--DECLARE ProductCode CHAR FIELDVALUE(Acct);
+		---TEMPORARY
+		--SET AccountType = '1';
+		--TEMPORARY
+		if AccountType='5' then
+			set Environment.Variables.ServiceVariables.CompanyCode=getCacheValue('ActivateAccountIslamicCompanyCode');
+		else
+			set Environment.Variables.ServiceVariables.CompanyCode=getCacheValue('ActivateAccountNormalCompanyCode');
+		end if;
+		If AccountType = '1' THEN
+			if ProductCode='1003' then
+				Set Environment.Variables.ServiceVariables.VersionName=getCacheValue('AccountServiceVersionNameForFCYCurrent');
+			elseif ProductCode='1001' or ProductCode='1150' or ProductCode='1011' or ProductCode='1017' or ProductCode='1005' then
+				Set Environment.Variables.ServiceVariables.VersionName=getCacheValue('AccountServiceVersionNameForMBLCYOpen');
+			elseif ProductCode='6003' then
+				Set Environment.Variables.ServiceVariables.VersionName=getCacheValue('AccountServiceVersionNameForFCYSaving');
+			elseif ProductCode='6004' then
+				Set Environment.Variables.ServiceVariables.VersionName=getCacheValue('AccountServiceVersionNameForLCYPLSaving');
+			elseif ProductCode='6005' then
+				Set Environment.Variables.ServiceVariables.VersionName=getCacheValue('AccountServiceVersionNameForPLSavingKifayat');
+			elseif ProductCode='6018' or ProductCode='6012' or ProductCode='6009' OR ProductCode='6001' then
+				Set Environment.Variables.ServiceVariables.VersionName=getCacheValue('AccountServiceVersionNameForPLSaving');
+			elseif ProductCode='6020' then
+				Set Environment.Variables.ServiceVariables.VersionName=getCacheValue('AccountServiceVersionNameForPLSavingKids');
+				-- elseif ProductCode='1070' then
+				-- Set Environment.Variables.ServiceVariables.VersionName=getCacheValue('AccountServiceVersionNameForPLCurrentKids');
+			ELSE
+				PROPAGATE TO TERMINAL 2;
+				RETURN TRUE;
+			end if;
+		ELSEIF AccountType = '5' THEN
+			IF ProductCode='6018' OR ProductCode='6800' OR ProductCode='6801' OR ProductCode='6802' OR ProductCode='6803'
+				OR ProductCode='6808' OR ProductCode='6809' THEN
+				SET Environment.Variables.ServiceVariables.VersionName=getCacheValue('AccountServiceVersionNameISLAMICSavingsPKR');
+			ELSEIF ProductCode='1017' OR ProductCode='1050' OR ProductCode='1810' THEN
+				SET Environment.Variables.ServiceVariables.VersionName=getCacheValue('AccountServiceVersionNameISLAMICCurrentPKR');
+			ELSEIF ProductCode='6850' OR ProductCode='6851' OR ProductCode='6852' THEN
+				SET Environment.Variables.ServiceVariables.VersionName=getCacheValue('AccountServiceVersionNameISLAMICSavingsFCY');
+			ELSEIF ProductCode='1880' OR ProductCode='1881' OR ProductCode='1882' THEN
+				SET Environment.Variables.ServiceVariables.VersionName=getCacheValue('AccountServiceVersionNameISLAMICCurrentFCY');
+			ELSE
+				PROPAGATE TO TERMINAL 2;
+				RETURN TRUE;
+			END IF;
+		ELSE
+			PROPAGATE TO TERMINAL 2;
+			RETURN TRUE;
+		END IF;
+
+		PROPAGATE TO TERMINAL 1;
+		RETURN TRUE;
+
+	END;
+	CREATE PROCEDURE getCacheValue(IN chrKey CHARACTER)
+	RETURNS CHARACTER
+	LANGUAGE JAVA
+	EXTERNAL NAME "cache.CacheUtil.getValue";
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

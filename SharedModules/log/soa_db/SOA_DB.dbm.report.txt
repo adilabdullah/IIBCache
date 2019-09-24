@@ -1,0 +1,17 @@
+
+
+Importing file: D:\Git Repo\baflesb\iib\SOA_DB_Project\SOA_DB.dbm
+
+
+Processing schema DB2ADMIN.
+Creating complex type for table SOA_AuditLog.
+Creating global element for table SOA_AuditLog.
+Creating file \SharedModules\soadb\db2admin\SOA_DB.xsd in the workspace.
+
+Elapsed time processing this message definition file: 3.09 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

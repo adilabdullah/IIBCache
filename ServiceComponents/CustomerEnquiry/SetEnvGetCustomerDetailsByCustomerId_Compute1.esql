@@ -1,0 +1,41 @@
+BROKER SCHEMA CustomerEnquiry
+
+
+CREATE COMPUTE MODULE SetEnvGetCustomerDetailsByCustomerId_Compute1
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		--set Environment.Variables.T24Mapping=InputRoot.JSON.Data.GetDetailsByCustomerId;
+		set Environment.Variables.T24Mapping=InputRoot.JSON.Data.CustomerT24Mapping;
+		
+		if Environment.Service.Operation.Name='GetDetailsByCustomerId' then 
+			set Environment.Variables.T24Mapping=InputRoot.JSON.Data.GetDetailsByCustomerId;
+		else 
+			set Environment.Variables.T24Mapping=InputRoot.JSON.Data.CustomerT24Mapping;
+		end if;
+		
+		CALL  initializeFlatMap(Environment.Variables.T24Mapping);
+		
+		RETURN TRUE;
+	END;
+
+	  
+	CREATE PROCEDURE initializeFlatMap (IN root REFERENCE)
+	  BEGIN
+	  	
+	    DECLARE cursor REFERENCE TO root;
+	    MOVE cursor FIRSTCHILD;
+	    IF LASTMOVE(cursor) THEN
+	      --SET answer = answer || 'Field has children... drilling down ';
+	    ELSE
+	      --SET answer = answer || 'Listing siblings... '; 
+	    	create LASTCHILD of Environment.FlatMap name FIELDNAME(cursor) value  FIELDVALUE(cursor);
+	    END IF;
+	    WHILE LASTMOVE(cursor) DO
+	      CALL initializeFlatMap(cursor);
+	      MOVE cursor NEXTSIBLING;
+	    END WHILE;
+	   -- SET answer = answer || 'Finished siblings... Popping up ';
+	  END;
+END MODULE;

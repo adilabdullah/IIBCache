@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="FundsTransferPHXTitleFetch" version="8.0.5.0" xmlns:map="FundsTransferPHXTitleFetch">
+    <input path="mbsharedlib://PHXGDCILib/PHXLibrary/GDCI_TitleFetch_Request.xsd"/>
+    <output path="mbsharedlib://PHXGDCILib/stringMessage.xsd"/>
+    <namespaces>
+        <namespace kind="extension" prefix="fn" uri="http://www.w3.org/2005/xpath-functions"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="PHXTitleFetchSubflow_Concat_Messsage">
+        <input path="mb:msg(GDCI_TitleFetch_Request,assembly,DFDL,Properties)" var="ComIbmMessageAssembly_GDCI_TitleFetch_Request"/>
+        <output path="mb:msg(concatMessage,assembly,XMLNSC,Properties)" var="ComIbmMessageAssembly_concatMessage"/>
+        <function ref="fn:concat">
+            <input path="$ComIbmMessageAssembly_GDCI_TitleFetch_Request/GDCI_TitleFetch_Request/TransactionRequestHeader/MessageProtocol" var="MessageProtocol"/>
+            <input path="$ComIbmMessageAssembly_GDCI_TitleFetch_Request/GDCI_TitleFetch_Request/TransactionRequestHeader/Version" var="Version"/>
+            <input path="$ComIbmMessageAssembly_GDCI_TitleFetch_Request/GDCI_TitleFetch_Request/TransactionRequestHeader/FieldInError" var="FieldInError"/>
+            <input path="$ComIbmMessageAssembly_GDCI_TitleFetch_Request/GDCI_TitleFetch_Request/TransactionRequestHeader/MessageType" var="MessageType"/>
+            <input path="$ComIbmMessageAssembly_GDCI_TitleFetch_Request/GDCI_TitleFetch_Request/TransactionRequestHeader/TransmissionDateTime" var="TransmissionDateTime"/>
+            <input path="$ComIbmMessageAssembly_GDCI_TitleFetch_Request/GDCI_TitleFetch_Request/TransactionRequestHeader/DeliveryChannelType" var="DeliveryChannelType"/>
+            <input path="$ComIbmMessageAssembly_GDCI_TitleFetch_Request/GDCI_TitleFetch_Request/TransactionRequestHeader/DeliveryChannelID" var="DeliveryChannelID"/>
+            <input path="$ComIbmMessageAssembly_GDCI_TitleFetch_Request/GDCI_TitleFetch_Request/TransactionRequestHeader/CustomerID" var="CustomerID"/>
+            <input path="$ComIbmMessageAssembly_GDCI_TitleFetch_Request/GDCI_TitleFetch_Request/TransactionRequestHeader/TransactionCode" var="TransactionCode"/>
+            <input path="$ComIbmMessageAssembly_GDCI_TitleFetch_Request/GDCI_TitleFetch_Request/TransactionRequestHeader/TransactionDate" var="TransactionDate"/>
+            <input path="$ComIbmMessageAssembly_GDCI_TitleFetch_Request/GDCI_TitleFetch_Request/TransactionRequestHeader/TransactionTime" var="TransactionTime"/>
+            <input path="$ComIbmMessageAssembly_GDCI_TitleFetch_Request/GDCI_TitleFetch_Request/TransactionRequestHeader/RetrivevalReferenceNumber" var="RetrivevalReferenceNumber"/>
+            <input path="$ComIbmMessageAssembly_GDCI_TitleFetch_Request/GDCI_TitleFetch_Request/TransactionRequestHeader/CustomerPINData" var="CustomerPINData"/>
+            <input path="$ComIbmMessageAssembly_GDCI_TitleFetch_Request/GDCI_TitleFetch_Request/TransactionRequestHeader/AgentID" var="AgentID"/>
+            <input path="$ComIbmMessageAssembly_GDCI_TitleFetch_Request/GDCI_TitleFetch_Request/TransactionRequestHeader/ChannelSpecificDataField" var="ChannelSpecificDataField"/>
+            <input path="$ComIbmMessageAssembly_GDCI_TitleFetch_Request/GDCI_TitleFetch_Request/TransactionRequestHeader/ChannelPrivateData" var="ChannelPrivateData"/>
+            <input path="$ComIbmMessageAssembly_GDCI_TitleFetch_Request/GDCI_TitleFetch_Request/TransactionRequestHeader/AuthorizationResponseID" var="AuthorizationResponseID"/>
+            <input path="$ComIbmMessageAssembly_GDCI_TitleFetch_Request/GDCI_TitleFetch_Request/TransactionRequestHeader/ResponseCode" var="ResponseCode"/>
+            <input path="$ComIbmMessageAssembly_GDCI_TitleFetch_Request/GDCI_TitleFetch_Request/body" var="body"/>
+            <input path="$ComIbmMessageAssembly_GDCI_TitleFetch_Request/GDCI_TitleFetch_Request/body/AccountBankIMD" var="AccountBankIMD"/>
+            <input path="$ComIbmMessageAssembly_GDCI_TitleFetch_Request/GDCI_TitleFetch_Request/body/AccountDetails" var="AccountDetails"/>
+            <output path="$ComIbmMessageAssembly_concatMessage/concatMessage/message"/>
+            <param name="string1" value="$MessageProtocol"/>
+            <param name="string2" value="$Version"/>
+            <param name="string3" value="$FieldInError"/>
+            <param name="string31" value="$MessageType"/>
+            <param name="string32" value="$TransmissionDateTime"/>
+            <param name="string33" value="$DeliveryChannelType"/>
+            <param name="string34" value="$DeliveryChannelID"/>
+            <param name="string35" value="$CustomerID"/>
+            <param name="string36" value="$TransactionCode"/>
+            <param name="string37" value="$TransactionDate"/>
+            <param name="string38" value="$TransactionTime"/>
+            <param name="string39" value="$RetrivevalReferenceNumber"/>
+            <param name="string310" value="$CustomerPINData"/>
+            <param name="string311" value="$AgentID"/>
+            <param name="string312" value="$ChannelSpecificDataField"/>
+            <param name="string313" value="$ChannelPrivateData"/>
+            <param name="string314" value="$AuthorizationResponseID"/>
+            <param name="string315" value="$ResponseCode"/>
+            <param name="string316" value="$body"/>
+            <param name="string317" value="$AccountBankIMD"/>
+            <param name="string318" value="$AccountDetails"/>
+        </function>
+        <assign value="{PHXGDCILib}">
+            <output path="$ComIbmMessageAssembly_concatMessage/Properties/MessageSet"/>
+        </assign>
+    </mappingDeclaration>
+</mappingRoot>

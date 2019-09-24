@@ -1,0 +1,44 @@
+BROKER SCHEMA AccountService
+
+
+CREATE COMPUTE MODULE SetEnvActivateAccount_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE AccountId CHARACTER Environment.Variables.RequestMessage.*:ActivateAccount.*:ActivateAccountRequest.AccountId;
+		set Environment.Variables.AccountId=AccountId;
+		set Environment.Variables.ChequeBook=Environment.Variables.RequestMessage.*:ActivateAccount.*:ActivateAccountRequest.ChequeBook;
+		set Environment.Variables.DebitCard=Environment.Variables.RequestMessage.*:ActivateAccount.*:ActivateAccountRequest.DebitCard;
+		set Environment.Variables.NoOfLeaves=Environment.Variables.RequestMessage.*:ActivateAccount.*:ActivateAccountRequest.NoOfLeaves;
+		set Environment.Variables.AccountOfficer=Environment.Variables.RequestMessage.*:ActivateAccount.*:ActivateAccountRequest.AccountOfficer;
+		DECLARE AccountIdFirstChar CHARACTER SUBSTRING(AccountId from 1 for 1);
+		
+		if AccountIdFirstChar='5' then 
+			set Environment.Variables.ServiceVariables.CompanyCode=getCacheValue('ActivateAccountIslamicCompanyCode');
+		else 
+			set Environment.Variables.ServiceVariables.CompanyCode=getCacheValue('ActivateAccountNormalCompanyCode');
+		end if;
+		
+		Set Environment.Variables.ServiceVariables.VersionFunction=getCacheValue('AccountServiceVersionFunction');		
+		Set Environment.Variables.ServiceVariables.VersionOperation=getCacheValue('AccountServiceVersionOperation');		
+		
+		Set Environment.Variables.OFSCredentials.username=getCacheValue('OFSCredentialsUsername');
+		Set Environment.Variables.OFSCredentials.password=getCacheValue('OFSCredentialsPassword');
+		
+		Set Environment.Variables.ServiceVariables.FirstOperation=getCacheValue('AccountServiceOperationName');		
+		Set Environment.Variables.ServiceVariables.SecondOperation=getCacheValue('ActivateAccountSecondOperation');
+		Set Environment.Variables.ServiceVariables.ThirdOperation=getCacheValue('ActivateAccountSecondOperation'); -- third has same as second so avoided duplicate entry in config
+		
+		Set Environment.Variables.ServiceVariables.FirstVersion=getCacheValue('ActivateAccountFirstVersionName');
+		Set Environment.Variables.ServiceVariables.SecondVersion=getCacheValue('ActivateAccountSecondVersionName');
+		Set Environment.Variables.ServiceVariables.ThirdVersion=getCacheValue('ActivateAccountThirdVersionName');
+		
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE getCacheValue(IN chrKey CHARACTER)
+	RETURNS CHARACTER
+	LANGUAGE JAVA
+	EXTERNAL NAME "cache.CacheUtil.getValue";
+	
+END MODULE;

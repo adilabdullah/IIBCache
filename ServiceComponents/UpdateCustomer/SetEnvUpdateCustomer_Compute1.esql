@@ -1,0 +1,48 @@
+BROKER SCHEMA UpdateCustomer
+
+
+CREATE COMPUTE MODULE SetEnvUpdateCustomer_Compute1
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+			Set Environment.Variables.CustomerT24Mapping=InputRoot.JSON.Data.CreateCustomerT24Mapping;
+		set Environment.Variables.MultiValueCount='';
+		set Environment.Variables.T24FlatMap='';
+		call initializeCount(InputRoot.JSON.Data.CreateCustomerT24Mapping);
+		RETURN TRUE;
+	END;
+
+
+	 CREATE PROCEDURE initializeCount (IN root REFERENCE)
+	  BEGIN
+	   
+	    DECLARE cursor REFERENCE TO root;
+	   
+	    MOVE cursor FIRSTCHILD;
+	    IF LASTMOVE(cursor) THEN
+	      --SET answer = answer || 'Field has children... drilling down ';
+	    ELSE
+	      --SET answer = answer || 'Listing siblings... '; 
+	    	create LASTCHILD of Environment.Variables.MultiValueCount name FIELDNAME(cursor) value 1;
+	    	create LASTCHILD of Environment.Variables.T24FlatMap name FIELDNAME(cursor) value FIELDVALUE(cursor);
+	    END IF;
+	
+	    WHILE LASTMOVE(cursor) DO
+	      CALL initializeCount(cursor);
+	      MOVE cursor NEXTSIBLING;
+	    END WHILE;
+	   -- SET answer = answer || 'Finished siblings... Popping up ';
+	  END;
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

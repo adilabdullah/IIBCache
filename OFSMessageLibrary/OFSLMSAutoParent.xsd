@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:csv="http://www.ibm.com/dfdl/CommaSeparatedFormat" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+
+
+	<xsd:import namespace="http://www.ibm.com/dfdl/CommaSeparatedFormat" schemaLocation="IBMdefined/CommaSeparatedFormat.xsd"/>
+	<xsd:element ibmSchExtn:docRoot="true" name="OFSLMSAutoParent">
+		<xsd:complexType>
+			<xsd:sequence dfdl:separator="">
+				<xsd:element name="body">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:sequence dfdl:separator="/">
+								<xsd:element minOccurs="0" name="Operation" type="xsd:string"/>
+							</xsd:sequence>
+							<xsd:sequence dfdl:separator="/">
+								<xsd:element minOccurs="0" name="Version" type="xsd:string"/>
+								<xsd:element minOccurs="0" name="VersionFunction" type="xsd:string"/>
+								<xsd:element minOccurs="0" name="VersionOperation" type="xsd:string"/>
+							</xsd:sequence>
+							<xsd:sequence dfdl:separator="/">
+								<xsd:element minOccurs="0" name="SignOn" type="xsd:string"/>
+								<xsd:element minOccurs="0" name="Password" type="xsd:string"/>
+								<xsd:element minOccurs="0" name="CompanyCode" type="xsd:string"/>
+							</xsd:sequence>
+							<xsd:sequence dfdl:separator="/">
+								<xsd:element minOccurs="0" name="TransactionId" type="xsd:string"/>
+								<xsd:element minOccurs="0" name="MessageId" type="xsd:string"/>
+							</xsd:sequence>
+							<xsd:sequence dfdl:separator="">
+								<xsd:element maxOccurs="unbounded" name="MessageData">
+									<xsd:complexType>
+										<xsd:sequence dfdl:separatorSuppressionPolicy="anyEmpty">
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="LEASE.CUST:1:1=" minOccurs="0" name="CustomerID" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="LEASE.AMT:1:1=" minOccurs="0" name="LeaseAmount" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="LEASE.MODE:1:1=" minOccurs="0" name="LeaseMode" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="LEASE.KEY.RATE:1:1=" minOccurs="0" name="LeaseKeyRate" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="LEASE.KEY.AMT:1:1=" minOccurs="0" name="LeaseKeyAmount" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="INSUR.RATE=" minOccurs="0" name="InsuranceRate" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="TENOR:1:1=" minOccurs="0" name="FinancingTenure" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="GRACE.PERIOD:1:1=" dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" minOccurs="0" name="GracePeriod" nillable="true" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="GRACE.INCLUSIVE:1:1=" dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" minOccurs="0" name="GraceInclusive" nillable="true" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="RENTAL.FREQ:1:1=" minOccurs="0" name="RentalFrequency" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="RENTAL.TYPE:1:1=" minOccurs="0" name="RentalType" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="RENTAL.MODE:1:1=" minOccurs="0" name="RentalMode" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="LD.TYPE:1:1=" minOccurs="0" name="LDType" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="PUR.QTY:1:1=" minOccurs="0" name="PurQuantity" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="KIBOR:1:1=" minOccurs="0" name="KIBOR" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="SPREAD.RATE:1:1=" dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" minOccurs="0" name="SpreadRate" nillable="true" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="REV.FREQ:1:1=" minOccurs="0" name="ReviewFrequency" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="RESID.RATE:1:1=" minOccurs="0" name="ResidualRate" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="INSUR.PERIOD=" minOccurs="0" name="InsurancePeriod" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="COMM.AMT:1:1=" minOccurs="0" name="CommissionAmount1" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="COMM.AMT:2:1=" minOccurs="0" name="CommissionAmount2" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="COMM.AMT:3:1=" minOccurs="0" name="CommissionAmount3" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="ASSET.TYPE=" minOccurs="0" name="AssetType" type="xsd:string"/>
+					              			<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="ASST.DESC=" minOccurs="0" name="AssetDescription" type="xsd:string"/>
+					              			<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="ASSET.COND=" minOccurs="0" name="AssetCondition" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="TRACKER=" minOccurs="0" name="Tracker" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="TRACKER.COMP=" minOccurs="0" name="TrackerComp" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="MODEL=" minOccurs="0" name="Model" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="COLOR=" minOccurs="0" name="Color" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="MAKE=" minOccurs="0" name="Make" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="ENGINE.NO=" minOccurs="0" name="EngineNo" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="CHASSIS.NO=" minOccurs="0" name="ChassisNo" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="REGISTRATION.NO=" minOccurs="0" name="RegistrationNo" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="LIFE.ASSET=" minOccurs="0" name="LifeAsset" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="MANUFACTURER=" minOccurs="0" name="Manufacturer" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="SUPPLIER=" minOccurs="0" name="Supplier" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="SECURITIES=" minOccurs="0" name="Securities" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="INSUR.COMP=" minOccurs="0" name="InsuranceComp" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="INSUR.START.DATE=" minOccurs="0" name="InsuranceStartDate" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="INSUR.END.DATE=" minOccurs="0" name="InsuranceEndDate" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="INSUR.POLICY.NO=" minOccurs="0" name="InsurancePolicyNo" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="BPM.REQ.ID=" minOccurs="0" name="BPMReqID" type="xsd:string"/>
+											<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="BPM.USER.ID=" minOccurs="0" name="BPMUserID" type="xsd:string"/>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:annotation>
+		<xsd:appinfo source="http://www.ogf.org/dfdl/">
+			<dfdl:format documentFinalTerminatorCanBeMissing="yes" encoding="{$dfdl:encoding}" escapeSchemeRef="csv:CSVEscapeScheme" ref="csv:CommaSeparatedFormat"/>
+		</xsd:appinfo>
+	</xsd:annotation>
+</xsd:schema>

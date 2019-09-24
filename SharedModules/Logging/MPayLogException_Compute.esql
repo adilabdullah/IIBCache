@@ -1,0 +1,62 @@
+BROKER SCHEMA Logging
+
+
+CREATE COMPUTE MODULE MPayLogException_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		DECLARE ExceptionMessage character;
+		SET ExceptionMessage= '';
+		CALL ComposeDetails(InputExceptionList,ExceptionMessage);
+		
+		DECLARE opname CHARACTER;
+		SET opname = SUBSTRING(SUBSTRING(Environment.Variables.RequestMessage BEFORE ',') AFTER 'queueforwarding/');
+		
+		--------------log4j---------
+		DECLARE rc BOOLEAN;
+		CALL initLog4j('brokerlog.xml') into rc;
+		
+		IF NOT EXISTS(Environment.Variables.RequestTimestamp[]) then 
+			SET Environment.Variables.RequestTimestamp= CAST(CURRENT_TIMESTAMP AS CHARACTER FORMAT 'yyyyMMddHHmmssSSS');
+		end if;
+		--Encoding 546
+		--CCSID 1208
+		CALL log4j_1_1(opname || ' - EXCEPTION ' || Environment.Variables.RequestTimestamp, 'MPAY_LOGGER','ERROR',ExceptionMessage) INTO rc;
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE ComposeDetails(IN root REFERENCE,INOUT concatString CHARACTER) BEGIN
+		DECLARE fieldName CHARACTER;
+		DECLARE fieldValue CHARACTER;
+		DECLARE cursor REFERENCE TO root;
+		MOVE cursor FIRSTCHILD;
+		WHILE LASTMOVE(cursor) Do
+		SET fieldName = FIELDNAME(cursor);
+		SET fieldValue = FIELDVALUE(cursor);
+		if LOWER(fieldName)='channelid' OR fieldName='Channeld' THEN SET Environment.Variables.ChannelId=fieldValue; END IF;
+		IF (fieldValue is not null) THEN
+		SET  concatString  =  concatString  ||'<'||fieldName||'>' ||fieldValue||'</'||fieldName||'>';
+		ELSE
+		SET  concatString  =  concatString  ||'<'||fieldName||'>';
+		CALL ComposeDetails(cursor, concatString  );
+		SET  concatString  =  concatString  ||'</'||fieldName||'>';
+		END IF;
+		MOVE cursor NEXTSIBLING;
+		END WHILE;  
+	END;
+	
+	CREATE FUNCTION initLog4j( IN CONFIG_FILE_NAME CHARACTER )
+		RETURNS BOOLEAN
+		LANGUAGE JAVA
+	EXTERNAL NAME "com.ibm.broker.IAM3.Log4jNode.initLog4j";
+		
+	CREATE FUNCTION log4j_1_1( IN COMPONENT_NAME CHARACTER,
+		IN LOGGER_NAME CHARACTER,
+		IN LEVEL CHARACTER,
+		IN TEXT CHARACTER )
+		RETURNS BOOLEAN
+		LANGUAGE JAVA
+	EXTERNAL NAME "com.ibm.broker.IAM3.Log4jNode.log";
+END MODULE;

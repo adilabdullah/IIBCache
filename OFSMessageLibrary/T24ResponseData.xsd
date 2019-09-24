@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:recSepFieldsFmt="http://www.ibm.com/dfdl/RecordSeparatedFieldFormat">
+    <xsd:import namespace="http://www.ibm.com/dfdl/RecordSeparatedFieldFormat" schemaLocation="IBMdefined/RecordSeparatedFieldFormat.xsd"/>
+        <xsd:element dfdl:nilKind="literalValue" dfdl:nilValue="%ES;" ibmSchExtn:docRoot="true" name="Response" nillable="false">
+    <xsd:complexType>
+      <xsd:sequence dfdl:separator="|">
+        <xsd:element name="Result">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element dfdl:initiator="RESPONSE.CODE:&lt;&quot;" dfdl:terminator="&quot;&gt;" name="ResponseCode" type="xsd:string"/>
+              <xsd:element dfdl:initiator="RESPONSE.DESC&lt;&quot;" dfdl:terminator="&quot;&gt;" name="ResponseDesc" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element maxOccurs="unbounded" name="Data">
+          <xsd:complexType>
+            <xsd:sequence dfdl:separator=",">
+              <xsd:element maxOccurs="unbounded" name="Field">
+                <xsd:complexType>
+                  <xsd:sequence dfdl:separator=":">
+                    <xsd:element dfdl:nilKind="literalValue" dfdl:nilValue="%ES;" dfdl:terminator="" dfdl:useNilForDefault="yes" name="FieldName" nillable="true" type="xsd:string"/>
+                    <xsd:element dfdl:emptyValueDelimiterPolicy="none" dfdl:initiator="&lt;&quot;" dfdl:nilKind="literalValue" dfdl:nilValue="%ES;" dfdl:nilValueDelimiterPolicy="both" dfdl:terminator="&quot;&gt;" dfdl:useNilForDefault="yes" name="FieldValue" nillable="true" type="xsd:string"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:annotation>
+		<xsd:appinfo source="http://www.ogf.org/dfdl/">
+			<dfdl:format encoding="{$dfdl:encoding}" escapeSchemeRef="" occursCountKind="implicit" ref="recSepFieldsFmt:RecordSeparatedFieldsFormat"/>
+		</xsd:appinfo>
+	</xsd:annotation>
+
+
+</xsd:schema>

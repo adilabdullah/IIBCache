@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:recFixLengthFieldsFmt="http://www.ibm.com/dfdl/RecordFixLengthFieldFormat">
+
+    <xsd:import namespace="http://www.ibm.com/dfdl/RecordFixLengthFieldFormat" schemaLocation="IBMdefined/RecordFixLengthFieldFormat.xsd"/>
+    <xsd:annotation>
+		<xsd:appinfo source="http://www.ogf.org/dfdl/">
+			<dfdl:format encoding="{$dfdl:encoding}" escapeSchemeRef="" occursCountKind="fixed" ref="recFixLengthFieldsFmt:RecordFixLengthFieldsFormat"/>
+		</xsd:appinfo>
+	</xsd:annotation>
+
+	<xsd:element dfdl:lengthKind="delimited" ibmSchExtn:docRoot="true" name="GDCI_IBFT_Response">
+		<xsd:complexType>
+			<xsd:sequence dfdl:separator="" dfdl:separatorSuppressionPolicy="anyEmpty">
+                				                			                                    <xsd:element dfdl:lengthKind="delimited" name="Header">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element dfdl:length="7" name="MessageProtocol" type="xsd:string"/>
+              <xsd:element dfdl:length="2" name="Version" type="xsd:string"/>
+              <xsd:element dfdl:length="3" name="FieldInError" type="xsd:string"/>
+              <xsd:element dfdl:length="4" name="MessageType" type="xsd:string"/>
+              <xsd:element dfdl:length="14" name="TransmissionDateTime" type="xsd:string"/>
+              <xsd:element dfdl:length="2" name="DeliveryChannelType" type="xsd:string"/>
+              <xsd:element dfdl:length="20" name="DeliveryChannelID" type="xsd:string"/>
+              <xsd:element dfdl:length="30" name="CustomerID" type="xsd:string"/>
+              <xsd:element dfdl:length="3" name="TransactionCode" type="xsd:string"/>
+              <xsd:element dfdl:length="8" name="TransactionDate" type="xsd:string"/>
+              <xsd:element dfdl:length="6" name="TransactionTime" type="xsd:string"/>
+              <xsd:element dfdl:length="12" name="RetrivevalReferenceNumber" type="xsd:string"/>
+              <xsd:element dfdl:length="20" name="CustomerPINData" type="xsd:string"/>
+              <xsd:element dfdl:length="80" name="ChannelSpecificDataField" type="xsd:string"/>
+              <xsd:element dfdl:length="20" name="ChannelPrivateData" type="xsd:string"/>
+              <xsd:element dfdl:length="6" name="AuthorizationResponseID" type="xsd:string"/>
+              <xsd:element dfdl:length="2" name="ResponseCode" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+                <xsd:element dfdl:lengthKind="delimited" dfdl:occursCountKind="implicit" minOccurs="0" name="body">
+					<xsd:complexType>
+						<xsd:sequence>
+																					                            						<xsd:element dfdl:length="11" name="FromAccountBankIMD" type="xsd:string"/>
+                            <xsd:element dfdl:length="20" name="FromAccountNumber" type="xsd:string"/>
+                            <xsd:element dfdl:length="2" name="FromAccountType" type="xsd:string"/>
+                            <xsd:element dfdl:length="3" name="FromAccountCurrency" type="xsd:string"/>
+                            <xsd:element dfdl:length="11" name="ToAccountBankIMD" type="xsd:string"/>
+                            <xsd:element dfdl:length="25" name="ToAccountDetals" type="xsd:string"/>
+                            <xsd:element dfdl:length="13" name="TransactionAmount" type="xsd:string"/>
+                            <xsd:element dfdl:length="3" name="TransactionCurrency" type="xsd:string"/>
+                            <xsd:element dfdl:length="4" name="TransactionFee" type="xsd:string"/>
+                        </xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+            </xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+
+</xsd:schema>

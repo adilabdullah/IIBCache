@@ -1,0 +1,74 @@
+BROKER SCHEMA Logging
+
+
+CREATE COMPUTE MODULE MPayLogResponse_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE ResponseMsg character;
+		SET ResponseMsg= '';
+		DECLARE RequestMsg character;
+		set RequestMsg=Environment.Variables.RequestMessage;
+		
+		DECLARE opname CHARACTER;
+		
+		SET opname = SUBSTRING(SUBSTRING(RequestMsg BEFORE ',') AFTER 'queueforwarding/');
+		
+--		IF opname = 'balanceinquiry' OR opname = 't24statement' OR opname = 'titlefetch' OR opname = 'relationshipInquiry' THEN 
+--			SET ResponseMsg = CAST( ASBITSTREAM(InputBody CCSID 1208 ENCODING 546) AS CHARACTER CCSID 1208);
+--		ELSE
+--			CALL ComposeDetails(InputRoot.XMLNSC, ResponseMsg);
+--		END IF;
+		
+		--------------log4j---------
+		DECLARE rc BOOLEAN;
+		CALL initLog4j('brokerlog.xml') into rc;
+		IF ( rc = FALSE ) THEN	set Environment.Variables.ResponseLoggingError='Error'; END IF;
+		
+		--Encoding 546
+		--CCSID 1208
+		CALL log4j_1_1(opname || ' - RESPONSE ' || Environment.Variables.RequestTimestamp, 'MPAY_LOGGER','INFO',
+		CAST( ASBITSTREAM(InputBody CCSID 1208 ENCODING 546) AS CHARACTER CCSID 1208)
+		) INTO rc;
+		RETURN TRUE;
+	END;
+
+
+
+	CREATE PROCEDURE ComposeDetails(IN root REFERENCE,INOUT concatString CHARACTER) BEGIN
+		DECLARE fieldName CHARACTER;
+		DECLARE fieldValue CHARACTER;
+		DECLARE cursor REFERENCE TO root;
+		MOVE cursor FIRSTCHILD;
+		WHILE LASTMOVE(cursor) Do
+		SET fieldName = FIELDNAME(cursor);
+		SET fieldValue = FIELDVALUE(cursor);
+		if LOWER(fieldName)='channelid' OR fieldName='Channeld' THEN SET Environment.Variables.ChannelId=fieldValue; END IF;
+		IF (fieldValue is not null) THEN
+		SET  concatString  =  concatString  ||'<'||fieldName||'>' ||fieldValue||'</'||fieldName||'>';
+		ELSE
+		SET  concatString  =  concatString  ||'<'||fieldName||'>';
+		CALL ComposeDetails(cursor, concatString  );
+		SET  concatString  =  concatString  ||'</'||fieldName||'>';
+		END IF;
+		MOVE cursor NEXTSIBLING;
+		END WHILE;  
+	END;
+	
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+	
+	CREATE FUNCTION initLog4j( IN CONFIG_FILE_NAME CHARACTER )
+		RETURNS BOOLEAN
+		LANGUAGE JAVA
+	EXTERNAL NAME "com.ibm.broker.IAM3.Log4jNode.initLog4j";
+		
+	CREATE FUNCTION log4j_1_1( IN COMPONENT_NAME CHARACTER,
+		IN LOGGER_NAME CHARACTER,
+		IN LEVEL CHARACTER,
+		IN TEXT CHARACTER )
+		RETURNS BOOLEAN
+		LANGUAGE JAVA
+	EXTERNAL NAME "com.ibm.broker.IAM3.Log4jNode.log";
+	
+END MODULE;

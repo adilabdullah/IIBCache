@@ -1,0 +1,42 @@
+BROKER SCHEMA AccountService
+
+
+CREATE COMPUTE MODULE SetEnvEnablePosting_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		DECLARE AccountNumber CHARACTER Environment.Variables.RequestMessage.*:EnablePosting.*:EnablePostingRequest.AccountNumber;
+		if SUBSTRING(AccountNumber from 1 for 1)='5' then 
+			set Environment.Variables.ServiceVariables.CompanyCode=getCacheValue('ActivateAccountIslamicCompanyCode');
+		else 
+			set Environment.Variables.ServiceVariables.CompanyCode=getCacheValue('ActivateAccountNormalCompanyCode');
+		end if;
+		
+		Set Environment.Variables.OFSCredentials.username=getCacheValue('OFSCredentialsUsername');
+		Set Environment.Variables.OFSCredentials.password=getCacheValue('OFSCredentialsPassword');
+		Set Environment.Variables.ServiceVariables.OperationName=getCacheValue('AccountServiceOperationName');
+		Set Environment.Variables.ServiceVariables.VersionOperation=getCacheValue('AccountService_EnablePostingVersionName');
+		
+	
+		RETURN TRUE;
+		
+	END;
+CREATE PROCEDURE getCacheValue(IN chrKey CHARACTER)
+	RETURNS CHARACTER
+	LANGUAGE JAVA
+	EXTERNAL NAME "cache.CacheUtil.getValue";
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

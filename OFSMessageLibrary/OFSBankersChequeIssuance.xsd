@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:fmt="http://www.ibm.com/dfdl/GeneralPurposeFormat" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+	
+	
+
+    <xsd:import namespace="http://www.ibm.com/dfdl/GeneralPurposeFormat" schemaLocation="IBMdefined/GeneralPurposeFormat.xsd"/>
+        <xsd:element ibmSchExtn:docRoot="true" name="OFSBankersChequeIssuance">
+    <xsd:complexType>
+      <xsd:sequence dfdl:separatorSuppressionPolicy="trailingEmpty">
+        <xsd:sequence dfdl:separator="">
+          <xsd:element name="Operation" type="xsd:string"/>
+        </xsd:sequence>
+        <xsd:sequence dfdl:separator="/">
+          <xsd:element name="Version" type="xsd:string"/>
+          <xsd:element name="VersionFunction" type="xsd:string"/>
+          <xsd:element name="VersionOperation" type="xsd:string"/>
+        </xsd:sequence>
+        <xsd:sequence dfdl:separator="/">
+          <xsd:element name="Username" type="xsd:string"/>
+          <xsd:element name="Password" type="xsd:string"/>
+                                      <xsd:element name="CompanyCode" type="xsd:string"/>
+                </xsd:sequence>
+                <xsd:sequence dfdl:separator="">
+          <xsd:element name="MessageData">
+            <xsd:complexType>
+              <xsd:sequence dfdl:separatorSuppressionPolicy="anyEmpty">
+                                                                                <xsd:element dfdl:initiator=",DEBIT.AMOUNT:1:1=" name="DebitAmount" type="xsd:string"/>
+                                                                                <xsd:element dfdl:initiator="DEBIT.ACCT.NO:1:1=" name="DebitAccountNumber" type="xsd:string"/>
+                                                                                                                                                                              <xsd:element dfdl:initiator="BEN.CUSTOMER:1:1=" name="BeneficiaryCustomer" type="xsd:string"/>
+                                <xsd:element dfdl:initiator="ORDERING.CUST:1:1=" name="OrderingCustomer" type="xsd:string"/>
+                                                                                                <xsd:element dfdl:initiator="PAYMENT.DETAILS:1:1=" name="PaymentDetails" type="xsd:string"/>
+                                                                                                                                <xsd:element dfdl:initiator="DEBIT.THEIR.REF:1:1=" name="DebitReference" type="xsd:string"/>
+                                                                                                                                <xsd:element dfdl:initiator="CREDIT.THEIR.REF:1:1=" name="CreditReference" type="xsd:string"/>
+                                                                                                <xsd:element dfdl:initiator="TARGET.BRANCH:1:1=" name="TargetBranch" type="xsd:string"/>
+                                                                                                                            <xsd:element dfdl:initiator="DD.ADDRESS:1:1=" name="BeneficiaryAddress" type="xsd:string"/>
+                                                                                                <xsd:element dfdl:initiator="ID.TYPE:1:1=" name="IdType" type="xsd:string"/>
+                                                                                                <xsd:element dfdl:initiator="ID.NUMBER:1:1=" name="IdNumber" type="xsd:string"/>
+                                                                                                <xsd:element dfdl:initiator="CONTACT.NO:1:1=" name="ContactNo" type="xsd:string"/>
+                                                                                                <xsd:element dfdl:initiator="INS.ISS.PURPOSE:1:1=" name="IssuancePurpose" type="xsd:string"/>
+                                                                                                <xsd:element dfdl:initiator="PURPOSE:1:1=" name="Purpose" type="xsd:string"/>
+                                                                                        </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+                                  </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:annotation>
+		<xsd:appinfo source="http://www.ogf.org/dfdl/">
+			<dfdl:format encoding="{$dfdl:encoding}" escapeSchemeRef="" ref="fmt:GeneralPurposeFormat"/>
+		</xsd:appinfo>
+	</xsd:annotation>
+	
+
+</xsd:schema>

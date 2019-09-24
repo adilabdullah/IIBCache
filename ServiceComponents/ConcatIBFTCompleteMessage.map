@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="default" version="8.0.5.0" xmlns:map="default">
+    <input path="mbsharedlib://PHXGDCILib/PHXLibrary/GDCI_IBFT_Request.xsd"/>
+    <output path="mbsharedlib://PHXGDCILib/stringMessage.xsd"/>
+    <namespaces>
+        <namespace kind="extension" prefix="fn" uri="http://www.w3.org/2005/xpath-functions"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="ConcatIBFTCompleteMessage">
+        <input path="mb:msg(GDCI_IBFT_Request,assembly,DFDL,Properties)" var="ComIbmMessageAssembly_GDCI_IBFT_Request"/>
+        <output path="mb:msg(concatMessage,assembly,XMLNSC,Properties)" var="ComIbmMessageAssembly_concatMessage"/>
+        <function ref="fn:concat">
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/TransactionRequestHeader/MessageProtocol" var="MessageProtocol"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/TransactionRequestHeader/Version" var="Version"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/TransactionRequestHeader/FieldInError" var="FieldInError"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/TransactionRequestHeader/MessageType" var="MessageType"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/TransactionRequestHeader/TransmissionDateTime" var="TransmissionDateTime"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/TransactionRequestHeader/DeliveryChannelType" var="DeliveryChannelType"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/TransactionRequestHeader/DeliveryChannelID" var="DeliveryChannelID"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/TransactionRequestHeader/CustomerID" var="CustomerID"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/TransactionRequestHeader/TransactionCode" var="TransactionCode"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/TransactionRequestHeader/TransactionDate" var="TransactionDate"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/TransactionRequestHeader/TransactionTime" var="TransactionTime"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/TransactionRequestHeader/RetrivevalReferenceNumber" var="RetrivevalReferenceNumber"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/TransactionRequestHeader/CustomerPINData" var="CustomerPINData"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/TransactionRequestHeader/AgentID" var="AgentID"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/TransactionRequestHeader/ChannelSpecificDataField" var="ChannelSpecificDataField"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/TransactionRequestHeader/ChannelPrivateData" var="ChannelPrivateData"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/TransactionRequestHeader/AuthorizationResponseID" var="AuthorizationResponseID"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/TransactionRequestHeader/ResponseCode" var="ResponseCode"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/body/FromAccountBankIMD" var="FromAccountBankIMD"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/body/FromAccountNumber" var="FromAccountNumber"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/body/FromAccountType" var="FromAccountType"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/body/FromAccountCurrency" var="FromAccountCurrency"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/body/ToAccountBankIMD" var="ToAccountBankIMD"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/body/ToAccountDetals" var="ToAccountDetals"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/body/TransactionAmount" var="TransactionAmount"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/body/TransactionCurrency" var="TransactionCurrency"/>
+            <input path="$ComIbmMessageAssembly_GDCI_IBFT_Request/GDCI_IBFT_Request/body/TransactionFee" var="TransactionFee"/>
+            <output path="$ComIbmMessageAssembly_concatMessage/concatMessage/message"/>
+            <param name="string1" value="$MessageProtocol"/>
+            <param name="string2" value="$Version"/>
+            <param name="string3" value="$FieldInError"/>
+            <param name="string31" value="$MessageType"/>
+            <param name="string32" value="$TransmissionDateTime"/>
+            <param name="string33" value="$DeliveryChannelType"/>
+            <param name="string34" value="$DeliveryChannelID"/>
+            <param name="string35" value="$CustomerID"/>
+            <param name="string36" value="$TransactionCode"/>
+            <param name="string37" value="$TransactionDate"/>
+            <param name="string38" value="$TransactionTime"/>
+            <param name="string39" value="$RetrivevalReferenceNumber"/>
+            <param name="string310" value="$CustomerPINData"/>
+            <param name="string311" value="$AgentID"/>
+            <param name="string312" value="$ChannelSpecificDataField"/>
+            <param name="string313" value="$ChannelPrivateData"/>
+            <param name="string314" value="$AuthorizationResponseID"/>
+            <param name="string315" value="$ResponseCode"/>
+            <param name="string316" value="$FromAccountBankIMD"/>
+            <param name="string317" value="$FromAccountNumber"/>
+            <param name="string318" value="$FromAccountType"/>
+            <param name="string319" value="$FromAccountCurrency"/>
+            <param name="string320" value="$ToAccountBankIMD"/>
+            <param name="string321" value="$ToAccountDetals"/>
+            <param name="string322" value="$TransactionAmount"/>
+            <param name="string323" value="$TransactionCurrency"/>
+            <param name="string324" value="$TransactionFee"/>
+        </function>
+        <assign value="{PHXGDCILib}">
+            <output path="$ComIbmMessageAssembly_concatMessage/Properties/MessageSet"/>
+        </assign>
+        <assign value="{stringMessage}">
+            <output path="$ComIbmMessageAssembly_concatMessage/Properties/MessageType"/>
+        </assign>
+    </mappingDeclaration>
+</mappingRoot>

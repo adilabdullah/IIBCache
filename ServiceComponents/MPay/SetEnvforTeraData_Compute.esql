@@ -1,0 +1,36 @@
+BROKER SCHEMA MPay
+
+
+CREATE COMPUTE MODULE SetEnvforTeraData_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		SET Environment.Variables.TeraDataDBConnURL = getCacheValue('TeraDataDBConnURL');
+		SET Environment.Variables.TeraDataClassURL = getCacheValue('TeraDataClassURL');
+		SET Environment.Variables.TeraDataDBusername = getCacheValue('TeraDataDBusername');
+		SET Environment.Variables.TeraDataDBpassword = getCacheValue('TeraDataDBpassword');
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+	
+	CREATE PROCEDURE getCacheValue(IN chrKey CHARACTER)
+	RETURNS CHARACTER
+	LANGUAGE JAVA
+	EXTERNAL NAME "cache.CacheUtil.getValue";
+	
+END MODULE;

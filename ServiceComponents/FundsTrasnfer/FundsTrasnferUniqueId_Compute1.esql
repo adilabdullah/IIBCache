@@ -1,0 +1,66 @@
+BROKER SCHEMA FundsTrasnfer
+
+
+CREATE COMPUTE MODULE FundsTrasnferUniqueId_Compute1
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		
+		
+		SET OutputRoot.Properties.MessageSet = '{OFSMessageLibrary}';
+		SET OutputRoot.Properties.MessageType = '{}:OFS3PFTFundsTransfer';
+		
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.Operation = InputRoot.DFDL.OFS3PFTFundsTransfer.body.Operation;
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.Version = InputRoot.DFDL.OFS3PFTFundsTransfer.body.Version;
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.Function = InputRoot.DFDL.OFS3PFTFundsTransfer.body.Function;
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.VersionOperation = InputRoot.DFDL.OFS3PFTFundsTransfer.body.VersionOperation;
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.SignOn = InputRoot.DFDL.OFS3PFTFundsTransfer.body.SignOn;
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.Password = InputRoot.DFDL.OFS3PFTFundsTransfer.body.Password;
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.CompanyCode = InputRoot.DFDL.OFS3PFTFundsTransfer.body.CompanyCode;
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.TransactionID = InputRoot.DFDL.OFS3PFTFundsTransfer.body.TransactionID;
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageID = InputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageID;
+		
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.ChannelId = InputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.ChannelId;
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.DebitAccountNumber = InputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.DebitAccountNumber;
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.DebitBranchCode = InputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.DebitBranchCode;
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.CreditAccountNumber = InputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.CreditAccountNumber;
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.CreditBranchCode = InputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.CreditBranchCode;
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.DebitRef = InputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.DebitRef;
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.DebitCurrency = InputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.DebitCurrency;
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.CreditCurrency = InputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.CreditCurrency;
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.CreditRef = InputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.CreditRef;
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.OrderingBank = InputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.OrderingBank;
+		
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.UniqueID = InputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.UniqueID;
+		
+		
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.DebitAmount = InputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.DebitAmount;
+		
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.Stan = SUBSTRING(OutputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.UniqueID FROM 6 FOR 6);
+		
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.Pan = InputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.Pan;
+		
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.CommissionCount = InputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.CommissionCount;
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.Commission = InputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.Commission;
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.TransactionType = InputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.TransactionType;
+		SET OutputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.ProfitCentreDept = InputRoot.DFDL.OFS3PFTFundsTransfer.body.MessageData.ProfitCentreDept;
+		
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

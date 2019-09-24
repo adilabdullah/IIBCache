@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="FundsTransferPHXTitleFetch" version="8.0.5.0" xmlns:map="FundsTransferPHXTitleFetch">
+    <input path="mbsharedlib://PHXGDCILib/PHXLibrary/GDCI_TransactionMessageHeaders.xsd"/>
+    <output path="mbsharedlib://PHXGDCILib/PHXLibrary/GDCI_TitleFetch_Response.xsd"/>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="PHXTitleFetchSubflow_Mapping2">
+        <input path="mb:msg(TransactionResponseHeader,assembly,DFDL,Properties)" var="ComIbmMessageAssembly_TransactionResponseHeader"/>
+        <output path="mb:msg(GDCI_TitleFetch_Response,assembly,DFDL,Properties)" var="ComIbmMessageAssembly_GDCI_TitleFetch_Response"/>
+        <move>
+            <input path="$ComIbmMessageAssembly_TransactionResponseHeader/Properties"/>
+            <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/Properties"/>
+            <override>
+                <assign value="{PHXGDCILib}">
+                    <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/Properties/MessageSet"/>
+                </assign>
+                <assign value="{}:GDCI_TitleFetch_Response">
+                    <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/Properties/MessageType"/>
+                </assign>
+            </override>
+        </move>
+        <move>
+            <input path="$ComIbmMessageAssembly_TransactionResponseHeader/TransactionResponseHeader/MessageType" var="MessageType1"/>
+            <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/GDCI_TitleFetch_Response/TransactionResponseHeader/MessageType"/>
+        </move>
+        <move automap="true">
+            <input path="$ComIbmMessageAssembly_TransactionResponseHeader/TransactionResponseHeader/MessageProtocol"/>
+            <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/GDCI_TitleFetch_Response/TransactionResponseHeader/MessageProtocol"/>
+        </move>
+        <move automap="true">
+            <input path="$ComIbmMessageAssembly_TransactionResponseHeader/TransactionResponseHeader/Version"/>
+            <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/GDCI_TitleFetch_Response/TransactionResponseHeader/Version"/>
+        </move>
+        <move automap="true">
+            <input path="$ComIbmMessageAssembly_TransactionResponseHeader/TransactionResponseHeader/FieldInError"/>
+            <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/GDCI_TitleFetch_Response/TransactionResponseHeader/FieldInError"/>
+        </move>
+        <move automap="true">
+            <input path="$ComIbmMessageAssembly_TransactionResponseHeader/TransactionResponseHeader/TransmissionDateTime"/>
+            <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/GDCI_TitleFetch_Response/TransactionResponseHeader/TransmissionDateTime"/>
+        </move>
+        <move automap="true">
+            <input path="$ComIbmMessageAssembly_TransactionResponseHeader/TransactionResponseHeader/DeliveryChannelType"/>
+            <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/GDCI_TitleFetch_Response/TransactionResponseHeader/DeliveryChannelType"/>
+        </move>
+        <move automap="true">
+            <input path="$ComIbmMessageAssembly_TransactionResponseHeader/TransactionResponseHeader/DeliveryChannelID"/>
+            <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/GDCI_TitleFetch_Response/TransactionResponseHeader/DeliveryChannelID"/>
+        </move>
+        <move automap="true">
+            <input path="$ComIbmMessageAssembly_TransactionResponseHeader/TransactionResponseHeader/CustomerID"/>
+            <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/GDCI_TitleFetch_Response/TransactionResponseHeader/CustomerID"/>
+        </move>
+        <move automap="true">
+            <input path="$ComIbmMessageAssembly_TransactionResponseHeader/TransactionResponseHeader/TransactionCode"/>
+            <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/GDCI_TitleFetch_Response/TransactionResponseHeader/TransactionCode"/>
+        </move>
+        <move automap="true">
+            <input path="$ComIbmMessageAssembly_TransactionResponseHeader/TransactionResponseHeader/TransactionDate"/>
+            <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/GDCI_TitleFetch_Response/TransactionResponseHeader/TransactionDate"/>
+        </move>
+        <move automap="true">
+            <input path="$ComIbmMessageAssembly_TransactionResponseHeader/TransactionResponseHeader/TransactionTime"/>
+            <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/GDCI_TitleFetch_Response/TransactionResponseHeader/TransactionTime"/>
+        </move>
+        <move automap="true">
+            <input path="$ComIbmMessageAssembly_TransactionResponseHeader/TransactionResponseHeader/RetrivevalReferenceNumber"/>
+            <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/GDCI_TitleFetch_Response/TransactionResponseHeader/RetrivevalReferenceNumber"/>
+        </move>
+        <move automap="true">
+            <input path="$ComIbmMessageAssembly_TransactionResponseHeader/TransactionResponseHeader/CustomerPINData"/>
+            <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/GDCI_TitleFetch_Response/TransactionResponseHeader/CustomerPINData"/>
+        </move>
+        <move automap="true">
+            <input path="$ComIbmMessageAssembly_TransactionResponseHeader/TransactionResponseHeader/ChannelSpecificDataField"/>
+            <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/GDCI_TitleFetch_Response/TransactionResponseHeader/ChannelSpecificDataField"/>
+        </move>
+        <move automap="true">
+            <input path="$ComIbmMessageAssembly_TransactionResponseHeader/TransactionResponseHeader/ChannelPrivateData"/>
+            <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/GDCI_TitleFetch_Response/TransactionResponseHeader/ChannelPrivateData"/>
+        </move>
+        <move automap="true">
+            <input path="$ComIbmMessageAssembly_TransactionResponseHeader/TransactionResponseHeader/AuthorizationResponseID"/>
+            <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/GDCI_TitleFetch_Response/TransactionResponseHeader/AuthorizationResponseID"/>
+        </move>
+        <move automap="true">
+            <input path="$ComIbmMessageAssembly_TransactionResponseHeader/TransactionResponseHeader/ResponseCode"/>
+            <output path="$ComIbmMessageAssembly_GDCI_TitleFetch_Response/GDCI_TitleFetch_Response/TransactionResponseHeader/ResponseCode"/>
+        </move>
+    </mappingDeclaration>
+</mappingRoot>

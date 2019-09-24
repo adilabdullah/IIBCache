@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:complexType name="LocalVariablesType">
+    	<xsd:sequence>
+    		<xsd:element name="ChannelID" type="xsd:string"/>
+    		<xsd:element name="NoOfTransactions" type="xsd:string"/>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="LocalVariables" type="LocalVariablesType"/>
+</xsd:schema>

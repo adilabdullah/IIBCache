@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="FundsTrasnfer" version="8.0.5.0" xmlns:map="FundsTrasnfer">
+    <input path="mbsharedlib://OFSMessageLibrary/OFS3PFTFundsTransfer.xsd"/>
+    <output path="mbsharedlib://OFSMessageLibrary/OFS3PFTFundsTransfer.xsd"/>
+    <imports>
+        <import kind="java" location="MessageTransform" namespace="xalan://MessageTransform"/>
+    </imports>
+    <namespaces>
+        <namespace kind="extension" prefix="MessageTransform" uri="xalan://MessageTransform"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="FundsTrasnferUniqueId_Mapping">
+        <input path="mb:msg(OFS3PFTFundsTransfer,assembly,DFDL,Properties)" var="MessageAssembly"/>
+        <output path="mb:msg(OFS3PFTFundsTransfer,assembly,DFDL,Properties)" var="MessageAssembly1"/>
+        <move>
+            <input path="$MessageAssembly/Properties"/>
+            <output path="$MessageAssembly1/Properties"/>
+            <override>
+                <assign value="{OFSMessageLibrary}">
+                    <output path="$MessageAssembly1/Properties/MessageSet"/>
+                </assign>
+                <assign value="{}:OFS3PFTFundsTransfer">
+                    <output path="$MessageAssembly1/Properties/MessageType"/>
+                </assign>
+            </override>
+        </move>
+        <customFunction lang="java" ref="MessageTransform:GenerateUniqueRRN">
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/MessageData/UniqueID" var="UniqueID"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/MessageData/UniqueID"/>
+            <param name="RRN" value="$UniqueID"/>
+        </customFunction>
+        <move>
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/Version"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/Version"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/Function"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/Function"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/SignOn"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/SignOn"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/Password"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/Password"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/MessageID"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/MessageID"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/MessageData/ChannelId"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/MessageData/ChannelId"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/MessageData/DebitAccountNumber"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/MessageData/DebitAccountNumber"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/MessageData/DebitRef"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/MessageData/DebitRef"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/MessageData/DebitCurrency"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/MessageData/DebitCurrency"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/MessageData/CreditCurrency"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/MessageData/CreditCurrency"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/MessageData/CreditAccountNumber"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/MessageData/CreditAccountNumber"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/MessageData/CreditRef"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/MessageData/CreditRef"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/MessageData/DebitAmount"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/MessageData/DebitAmount"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/MessageData/OrderingBank"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/MessageData/OrderingBank"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/MessageData/CommissionCount"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/MessageData/CommissionCount"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/VersionOperation"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/VersionOperation"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/Operation"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/Operation"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/TransactionID"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/TransactionID"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/CompanyCode"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/CompanyCode"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/MessageData/DebitBranchCode"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/MessageData/DebitBranchCode"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/MessageData/CreditBranchCode"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/MessageData/CreditBranchCode"/>
+        </move>
+        <foreach>
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/MessageData/Commission"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/MessageData/Commission"/>
+            <move>
+                <input path="CommissionType"/>
+                <output path="CommissionType"/>
+            </move>
+            <move>
+                <input path="CommissionAmount"/>
+                <output path="CommissionAmount"/>
+            </move>
+        </foreach>
+        <move>
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/MessageData/Pan"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/MessageData/Pan"/>
+        </move>
+        <move>
+            <input path="$MessageAssembly/OFS3PFTFundsTransfer/body/MessageData/Stan"/>
+            <output path="$MessageAssembly1/OFS3PFTFundsTransfer/body/MessageData/Stan"/>
+        </move>
+    </mappingDeclaration>
+</mappingRoot>

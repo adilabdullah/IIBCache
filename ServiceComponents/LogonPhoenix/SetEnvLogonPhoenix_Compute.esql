@@ -1,0 +1,46 @@
+BROKER SCHEMA LogonPhoenix
+
+
+CREATE COMPUTE MODULE SetEnvLogonPhoenix_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+--		SET OutputRoot.DFDL.GDCI_LoginMessage.body.Version = InputRoot.JSON.Data.GDCIMessageVersion;
+--		SET OutputRoot.DFDL.GDCI_LoginMessage.body.DeliveryChannelID = InputRoot.JSON.Data.PhoenixDeliveryChannelID;
+--		SET OutputRoot.DFDL.GDCI_LoginMessage.body.channelPassword = InputRoot.JSON.Data.PhoenixDeliveryChannelPassword;
+--		
+		
+		SET OutputRoot.DFDL.GDCI_LoginMessage.body.Version = getCacheValue('GDCIMessageVersion');
+		SET OutputRoot.DFDL.GDCI_LoginMessage.body.DeliveryChannelID = getCacheValue('PhoenixDeliveryChannelID');
+		SET OutputRoot.DFDL.GDCI_LoginMessage.body.channelPassword = getCacheValue('PhoenixDeliveryChannelPassword');
+		
+		--Setting Static Values for TitleFetch Transaction Header
+		SET OutputRoot.DFDL.GDCI_LoginMessage.body.MessageProtocol = 'PHXGDCI';
+		SET OutputRoot.DFDL.GDCI_LoginMessage.body.FieldInError = '000';
+		SET OutputRoot.DFDL.GDCI_LoginMessage.body.MessageType = '0800';
+		SET OutputRoot.DFDL.GDCI_LoginMessage.body.CustomerPINData = '                    ';
+		SET OutputRoot.DFDL.GDCI_LoginMessage.body.ChannelPrivateData = '                    ';
+		SET OutputRoot.DFDL.GDCI_LoginMessage.body.AuthorizationResponseID = '      ';
+		SET OutputRoot.DFDL.GDCI_LoginMessage.body.ResponseCode = '00';
+		SET OutputRoot.DFDL.GDCI_LoginMessage.body.TransactionCode = '801';
+		RETURN TRUE;
+	END;
+	CREATE PROCEDURE getCacheValue(IN chrKey CHARACTER)
+	RETURNS CHARACTER
+	LANGUAGE JAVA
+	EXTERNAL NAME "cache.CacheUtil.getValue";
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

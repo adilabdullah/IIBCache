@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://iibdbdev/bafl" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:iibdbdevbafl="http://iibdbdev/bafl">
+  <!-- Message definition generated from D:\Git Repo\baflesb\iib\SOA_DB_Project\IIBDBDEV.dbm -->
+
+<!-- Complex type for IIBDBDEV.BAFL.SOA_AUDITLOG -->
+    <xsd:complexType name="SOA_AUDITLOGType">
+    <xsd:sequence>
+      <xsd:element name="ID" type="xsd:int"/>
+      <xsd:element name="SERVICE_NAME">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="200"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="OPERATION_NAME">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="200"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="USERNAME" nillable="true">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="200"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="CHANNEL_ID" nillable="true">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="20"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="REQUEST_TIMESTAMP">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="30"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="REQUEST_MESSAGE" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="RESPONSE_TIMESTAMP" nillable="true">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="30"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="RESPONSE_MESSAGE" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="EXCEPTION" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="DATA1" nillable="true">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="2000"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="DATA2" nillable="true">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="2000"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="DATA3" nillable="true">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="2000"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="DATA4" nillable="true">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="2000"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="DATA5" nillable="true">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="2000"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+
+<!-- Global element for IIBDBDEV.BAFL.SOA_AUDITLOG -->
+    <xsd:element ibmSchExtn:docRoot="true" name="SOA_AUDITLOG" type="iibdbdevbafl:SOA_AUDITLOGType"/>
+</xsd:schema>

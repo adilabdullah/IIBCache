@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="SpecialCharRemoval" version="8.0.5.0" xmlns:map="SpecialCharRemoval">
+    <input path="jar:file://!com/ibm/etools/mft/map/xsds/predefined/BlobMessage.xsd"/>
+    <output path="jar:file://!com/ibm/etools/mft/map/xsds/predefined/BlobMessage.xsd"/>
+    <imports>
+        <import kind="java" location="dfdl.BlobHandler" namespace="xalan://dfdl.BlobHandler"/>
+    </imports>
+    <namespaces>
+        <namespace kind="extension" prefix="BlobHandler" uri="xalan://dfdl.BlobHandler"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="RemoveSpecialChar_Mapping">
+        <input path="mb:msg(BLOB,assembly,BLOB,Properties)" var="ComIbmMessageAssembly_BLOB"/>
+        <output path="mb:msg(BLOB,assembly,BLOB,Properties)" var="ComIbmMessageAssembly_BLOB1"/>
+        <move>
+            <input path="$ComIbmMessageAssembly_BLOB/Properties"/>
+            <output path="$ComIbmMessageAssembly_BLOB1/Properties"/>
+        </move>
+        <customFunction lang="java" ref="BlobHandler:RemoveSpecialChar">
+            <input path="$ComIbmMessageAssembly_BLOB/BLOB/text()" var="value"/>
+            <output path="$ComIbmMessageAssembly_BLOB1/BLOB/text()"/>
+            <param name="data" value="$value"/>
+        </customFunction>
+    </mappingDeclaration>
+</mappingRoot>

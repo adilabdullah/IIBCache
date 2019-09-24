@@ -1,0 +1,46 @@
+BROKER SCHEMA SharedModules
+
+
+CREATE COMPUTE MODULE LogonToPheonix_Compute_MsgFromFile
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		SET OutputRoot.Properties = InputRoot.Properties;
+		
+		SET OutputRoot.XMLNSC.concatMessage.message = InputRoot.DFDL.GDCI_LoginMessage.body.MessageProtocol
+|| InputRoot.DFDL.GDCI_LoginMessage.body.Version
+|| InputRoot.DFDL.GDCI_LoginMessage.body.FieldInError
+|| InputRoot.DFDL.GDCI_LoginMessage.body.MessageType
+|| InputRoot.DFDL.GDCI_LoginMessage.body.TransMissionDateAndtime
+|| InputRoot.DFDL.GDCI_LoginMessage.body.DeliveryChannelType
+|| InputRoot.DFDL.GDCI_LoginMessage.body.DeliveryChannelID
+|| InputRoot.DFDL.GDCI_LoginMessage.body.CustomerIdentification
+|| InputRoot.DFDL.GDCI_LoginMessage.body.TransactionCode
+|| InputRoot.DFDL.GDCI_LoginMessage.body.TransactionDate
+|| InputRoot.DFDL.GDCI_LoginMessage.body.TransactionTime
+|| InputRoot.DFDL.GDCI_LoginMessage.body.RetrievalReferenceNumber
+|| InputRoot.DFDL.GDCI_LoginMessage.body.CustomerPINData
+|| InputRoot.DFDL.GDCI_LoginMessage.body.ChannelSpecificDataField
+|| InputRoot.DFDL.GDCI_LoginMessage.body.ChannelPrivateData
+|| InputRoot.DFDL.GDCI_LoginMessage.body.AuthorizationResponseID
+|| InputRoot.DFDL.GDCI_LoginMessage.body.ResponseCode
+|| InputRoot.DFDL.GDCI_LoginMessage.body.channelPassword;
+
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

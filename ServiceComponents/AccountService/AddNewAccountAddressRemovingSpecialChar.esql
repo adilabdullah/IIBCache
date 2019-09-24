@@ -1,0 +1,49 @@
+BROKER SCHEMA AccountService
+
+CREATE COMPUTE MODULE AddNewAccountAddressRemovingSpecialChar
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();		
+
+		DECLARE temp CHAR;
+
+		SET temp = REPLACE(OutputRoot.DFDL.OFSEnquiryRequest.body.MsgData, '`', '-');
+		SET temp = REPLACE(temp, '!', '-');
+		SET temp = REPLACE(temp, '@', '-');
+		SET temp = REPLACE(temp, '#', '-');
+		SET temp = REPLACE(temp, '$', '-');
+		SET temp = REPLACE(temp, '%', '-');
+		SET temp = REPLACE(temp, '^', '-');
+		SET temp = REPLACE(temp, '&', '-');
+		SET temp = REPLACE(temp, '*', '-');
+		SET temp = REPLACE(temp, '!', '-');
+		SET temp = REPLACE(temp, ';', '-');
+		SET temp = REPLACE(temp, '[', '-');
+		SET temp = REPLACE(temp, ']', '-');
+		SET temp = REPLACE(temp, '{', '-');
+		SET temp = REPLACE(temp, '}', '-');
+		SET temp = REPLACE(temp, '|', '-');
+		SET temp = REPLACE(temp, '\', '-');
+		SET temp = REPLACE(temp, '<', '-');
+		SET temp = REPLACE(temp, '>', '-');
+		
+		SET OutputRoot.DFDL.OFSEnquiryRequest.body.MsgData = temp;
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

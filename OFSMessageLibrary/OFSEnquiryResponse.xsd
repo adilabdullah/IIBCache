@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:recSepFieldsFmt="http://www.ibm.com/dfdl/RecordSeparatedFieldFormat">
+    <xsd:import namespace="http://www.ibm.com/dfdl/RecordSeparatedFieldFormat" schemaLocation="IBMdefined/RecordSeparatedFieldFormat.xsd"/>
+                                <xsd:element ibmSchExtn:docRoot="true" name="BenCust">
+    <xsd:complexType>
+      <xsd:sequence dfdl:separator="">
+        <xsd:element dfdl:terminator=":" minOccurs="0" name="Name" type="xsd:string"/>
+        <xsd:element minOccurs="0" name="Value" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element ibmSchExtn:docRoot="true" name="AcctwithInst">
+    <xsd:complexType>
+      <xsd:sequence dfdl:separator="">
+        <xsd:element dfdl:terminator=":" minOccurs="0" name="Name" type="xsd:string"/>
+        <xsd:element minOccurs="0" name="Value" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element ibmSchExtn:docRoot="true" name="RepeatedRow3">
+    <xsd:complexType>
+      <xsd:sequence dfdl:separator="">
+        <xsd:element dfdl:terminator=":" minOccurs="0" name="Name" type="xsd:string"/>
+        <xsd:element minOccurs="0" name="Value" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element ibmSchExtn:docRoot="true" name="RepeatedRow2">
+    <xsd:complexType>
+      <xsd:sequence dfdl:separator="">
+        <xsd:element dfdl:terminator=":" minOccurs="0" name="Name" type="xsd:string"/>
+        <xsd:element minOccurs="0" name="Value" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element ibmSchExtn:docRoot="true" name="RepeatedRow">
+    <xsd:complexType>
+      <xsd:sequence dfdl:separator="">
+                                        <xsd:element dfdl:terminator=":" minOccurs="0" name="Name" type="xsd:string"/>
+                                        <xsd:element dfdl:emptyValueDelimiterPolicy="none" dfdl:initiator="" dfdl:terminator="" minOccurs="0" name="Value" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element ibmSchExtn:docRoot="true" name="FTRow">
+    <xsd:complexType>
+                      <xsd:sequence dfdl:separator="">
+                                        <xsd:element dfdl:terminator=":" minOccurs="0" name="Name" type="xsd:string"/>
+                                        <xsd:element dfdl:emptyValueDelimiterPolicy="both" dfdl:initiator="&lt;" dfdl:terminator="&gt;" minOccurs="0" name="Value" type="xsd:string"/>
+                                  </xsd:sequence>
+        </xsd:complexType>
+  </xsd:element>
+    <xsd:element ibmSchExtn:docRoot="true" name="BPMRow">
+    <xsd:complexType>
+      <xsd:sequence dfdl:separator="">
+        <xsd:element dfdl:terminator=":" name="Name" type="xsd:string"/>
+        <xsd:element dfdl:emptyValueDelimiterPolicy="both" dfdl:initiator="&lt;" dfdl:terminator="&gt;" minOccurs="0" name="Value" type="xsd:string"/>
+        <xsd:element dfdl:initiator="," dfdl:terminator=":" name="Name2" type="xsd:string"/>
+        <xsd:element dfdl:emptyValueDelimiterPolicy="both" dfdl:initiator="&lt;" dfdl:terminator="&gt;" minOccurs="0" name="Value2" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element ibmSchExtn:docRoot="true" name="ReturnedRow">
+    <xsd:complexType>
+      <xsd:sequence dfdl:separator="">
+        <xsd:element dfdl:emptyValueDelimiterPolicy="none" dfdl:initiator="" dfdl:terminator=":" name="ColumnName" type="xsd:string"/>
+                      <xsd:element dfdl:emptyValueDelimiterPolicy="none" dfdl:initiator="" dfdl:terminator="" minOccurs="0" name="ColumnValue" type="xsd:string"/>
+            </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+                <xsd:annotation>
+		<xsd:appinfo source="http://www.ogf.org/dfdl/">
+			<dfdl:format encoding="{$dfdl:encoding}" escapeSchemeRef="" occursCountKind="implicit" ref="recSepFieldsFmt:RecordSeparatedFieldsFormat"/>
+		</xsd:appinfo>
+	</xsd:annotation>
+
+	<xsd:element ibmSchExtn:docRoot="true" name="OFSEnquiryResponse">
+		<xsd:complexType>
+			<xsd:sequence dfdl:separator="" dfdl:separatorSuppressionPolicy="anyEmpty">
+                							<xsd:element name="body">
+					<xsd:complexType>
+                                                											                                                            <xsd:sequence dfdl:separator="|">
+              <xsd:element ref="FTRow"/>
+              <xsd:element ref="BPMRow"/>
+                                                                      <xsd:sequence dfdl:separator="">
+                <xsd:element dfdl:terminator=":" name="TagName" type="xsd:string"/>
+                <xsd:sequence>
+                  <xsd:element maxOccurs="unbounded" ref="RepeatedRow"/>
+                </xsd:sequence>
+              </xsd:sequence>
+                                                                                                                                                                                                                      <xsd:sequence dfdl:separator="">
+                <xsd:element dfdl:terminator=":" name="TagName" type="xsd:string"/>
+                <xsd:element maxOccurs="unbounded" ref="RepeatedRow2"/>
+              </xsd:sequence>
+                            <xsd:sequence>
+                <xsd:element maxOccurs="unbounded" ref="RepeatedRow3"/>
+              </xsd:sequence>
+                            <xsd:element ref="ReturnedRow"/>
+                            <xsd:sequence>
+                <xsd:element maxOccurs="unbounded" ref="AcctwithInst"/>
+              </xsd:sequence>
+                            <xsd:element ref="ReturnedRow"/>
+                            <xsd:sequence>
+                <xsd:element maxOccurs="unbounded" ref="BenCust"/>
+              </xsd:sequence>
+                            <xsd:sequence dfdl:separator="|">
+                <xsd:element maxOccurs="unbounded" ref="ReturnedRow"/>
+              </xsd:sequence>
+                        </xsd:sequence>
+                    </xsd:complexType>
+				</xsd:element>
+                                                                    </xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+</xsd:schema>

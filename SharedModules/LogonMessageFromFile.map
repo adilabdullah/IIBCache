@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="default" version="8.0.5.0" xmlns:map="default">
+    <input path="mbsharedlib://PHXGDCILib/GDCI_LoginMessage.xsd"/>
+    <output path="mbsharedlib://PHXGDCILib/stringMessage.xsd"/>
+    <namespaces>
+        <namespace kind="extension" prefix="fn" uri="http://www.w3.org/2005/xpath-functions"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="LogonMessageFromFile">
+        <input path="mb:msg(GDCI_LoginMessage,assembly,DFDL,Properties)" var="ComIbmMessageAssembly_GDCI_LoginMessage"/>
+        <output path="mb:msg(concatMessage,assembly,XMLNSC,Properties)" var="ComIbmMessageAssembly_concatMessage"/>
+        <function ref="fn:concat">
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/MessageProtocol" var="MessageProtocol"/>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/Version" var="Version"/>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/FieldInError" var="FieldInError"/>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/MessageType" var="MessageType"/>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/TransMissionDateAndtime" var="TransMissionDateAndtime"/>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/DeliveryChannelType" var="DeliveryChannelType"/>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/DeliveryChannelID" var="DeliveryChannelID"/>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/CustomerIdentification" var="CustomerIdentification"/>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/TransactionCode" var="TransactionCode"/>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/TransactionDate" var="TransactionDate"/>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/TransactionTime" var="TransactionTime"/>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/RetrievalReferenceNumber" var="RetrievalReferenceNumber"/>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/CustomerPINData" var="CustomerPINData"/>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/ChannelSpecificDataField" var="ChannelSpecificDataField"/>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/ChannelPrivateData" var="ChannelPrivateData"/>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/AuthorizationResponseID" var="AuthorizationResponseID"/>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/ResponseCode" var="ResponseCode"/>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/GDCI_LoginMessage/body/channelPassword" var="channelPassword"/>
+            <output path="$ComIbmMessageAssembly_concatMessage/concatMessage/message"/>
+            <param name="string1" value="$MessageProtocol"/>
+            <param name="string2" value="$Version"/>
+            <param name="string3" value="$FieldInError"/>
+            <param name="string31" value="$MessageType"/>
+            <param name="string32" value="$TransMissionDateAndtime"/>
+            <param name="string33" value="$DeliveryChannelType"/>
+            <param name="string34" value="$DeliveryChannelID"/>
+            <param name="string35" value="$CustomerIdentification"/>
+            <param name="string36" value="$TransactionCode"/>
+            <param name="string37" value="$TransactionDate"/>
+            <param name="string38" value="$TransactionTime"/>
+            <param name="string39" value="$RetrievalReferenceNumber"/>
+            <param name="string310" value="$CustomerPINData"/>
+            <param name="string311" value="$ChannelSpecificDataField"/>
+            <param name="string312" value="$ChannelPrivateData"/>
+            <param name="string313" value="$AuthorizationResponseID"/>
+            <param name="string314" value="$ResponseCode"/>
+            <param name="string315" value="$channelPassword"/>
+        </function>
+        <move>
+            <input path="$ComIbmMessageAssembly_GDCI_LoginMessage/Properties"/>
+            <output path="$ComIbmMessageAssembly_concatMessage/Properties"/>
+        </move>
+    </mappingDeclaration>
+</mappingRoot>

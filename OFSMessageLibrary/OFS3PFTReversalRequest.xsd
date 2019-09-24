@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:fmt="http://www.ibm.com/dfdl/GeneralPurposeFormat" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+	
+	
+
+    <xsd:import namespace="http://www.ibm.com/dfdl/GeneralPurposeFormat" schemaLocation="IBMdefined/GeneralPurposeFormat.xsd"/>
+        <xsd:element ibmSchExtn:docRoot="true" name="OFS3PFTReversalRequest">
+    <xsd:complexType>
+      <xsd:sequence dfdl:separator="," dfdl:separatorSuppressionPolicy="never">
+        <xsd:sequence dfdl:separator="">
+          <xsd:element name="Operation" type="xsd:string"/>
+        </xsd:sequence>
+        <xsd:sequence dfdl:separator="" dfdl:terminator="">
+          <xsd:element default=" " dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" maxOccurs="0" minOccurs="0" name="field1" nillable="true" type="xsd:string"/>
+          <xsd:element dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" maxOccurs="0" minOccurs="0" name="field2" nillable="true" type="xsd:string"/>
+          <xsd:element dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" maxOccurs="0" minOccurs="0" name="field2" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+        <xsd:sequence dfdl:separator="/">
+          <xsd:element name="Username" type="xsd:string"/>
+          <xsd:element name="Password" type="xsd:string"/>
+          <xsd:element maxOccurs="0" minOccurs="0" name="CompanyCode" type="xsd:string"/>
+        </xsd:sequence>
+        <xsd:sequence dfdl:separator="">
+          <xsd:element dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" maxOccurs="0" minOccurs="0" name="TransactionId" nillable="true" type="xsd:string"/>
+          <xsd:element dfdl:nilValue="%SP;" dfdl:useNilForDefault="yes" maxOccurs="0" minOccurs="0" name="MessageId" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+        <xsd:sequence dfdl:separator="/">
+          <xsd:element name="MessageData">
+            <xsd:complexType>
+              <xsd:sequence dfdl:separator="">
+                <xsd:element name="UniqueId" type="xsd:string"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:annotation>
+		<xsd:appinfo source="http://www.ogf.org/dfdl/">
+			<dfdl:format encoding="{$dfdl:encoding}" escapeSchemeRef="" ref="fmt:GeneralPurposeFormat"/>
+		</xsd:appinfo>
+	</xsd:annotation>
+	
+
+</xsd:schema>

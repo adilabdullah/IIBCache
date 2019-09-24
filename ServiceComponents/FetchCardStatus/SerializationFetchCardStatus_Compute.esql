@@ -1,0 +1,63 @@
+BROKER SCHEMA FetchCardStatus
+
+
+CREATE COMPUTE MODULE SerializationFetchCardStatus_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		SET OutputLocalEnvironment.Destination.File.Directory = 'D:\';
+		SET OutputLocalEnvironment.Destination.File.Name = 'FETCHCARDSTATUS.serialize';
+		SET OutputLocalEnvironment.File.Read.Directory = 'D:\';
+		SET OutputLocalEnvironment.File.Read.Name = 'FETCHCARDSTATUS.serialize';
+		
+		
+		SET OutputRoot.Properties = InputRoot.Properties;
+		CALL CopyEntireMessage();
+		SET OutputRoot.Properties.MessageSet = '{PHXGDCILib}';
+		SET OutputRoot.Properties.MessageType = '{}:FetchCard_Request';
+		
+		DECLARE temp CHARACTER;
+		SET temp = '                                                                                           ';
+		
+		DECLARE len INT;
+		
+		SET len = LENGTH(OutputRoot.DFDL.FetchCard_Request.TransactionRequestHeader.CustomerID);
+		IF  len < 30 THEN
+			SET OutputRoot.DFDL.FetchCard_Request.TransactionRequestHeader.CustomerID = OutputRoot.DFDL.FetchCard_Request.TransactionRequestHeader.CustomerID || SUBSTRING (temp FROM 1 FOR (30-len));
+		END IF;
+		
+		SET len = LENGTH(OutputRoot.DFDL.FetchCard_Request.body.CardNumber); 
+		IF  len < 20 THEN
+			SET OutputRoot.DFDL.FetchCard_Request.body.CardNumber = OutputRoot.DFDL.FetchCard_Request.body.CardNumber || SUBSTRING (temp FROM 1 FOR (20-len));
+		END IF;
+		
+		--SET OutputRoot.DFDL.FetchCard_Request.body.Expiry = '    ';
+		
+--		SET OutputLocalEnvironment.Destination.File.Directory = 'D:\';
+--		SET OutputLocalEnvironment.Destination.File.Name = Environment.Variables.ServiceVariables.UniqueId;
+--		SET OutputLocalEnvironment.File.Read.Directory = 'D:\';
+--		SET OutputLocalEnvironment.File.Read.Name = Environment.Variables.ServiceVariables.UniqueId;
+--		
+--		SET OutputRoot.Properties = InputRoot.Properties;
+--		CALL CopyEntireMessage();
+--		SET OutputRoot.Properties.MessageSet = '{PHXGDCILib}';
+--		SET OutputRoot.Properties.MessageType = '{}:GDCI_TitleFetch_Request';
+--		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

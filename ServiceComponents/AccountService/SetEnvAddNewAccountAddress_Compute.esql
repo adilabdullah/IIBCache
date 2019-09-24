@@ -1,0 +1,55 @@
+BROKER SCHEMA AccountService
+
+
+CREATE COMPUTE MODULE SetEnvAddNewAccountAddress_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		
+		Set Environment.Variables.ServiceVariables.FirstOperation=getCacheValue('AddNewAddressFirstOperation');		
+		Set Environment.Variables.ServiceVariables.FirstVersion=getCacheValue('AddNewAddressFirstVersionName');
+		Set Environment.Variables.ServiceVariables.SecondOperation=getCacheValue('AddNewAddressSecondOperation');
+		Set Environment.Variables.ServiceVariables.SecondVersion=getCacheValue('AddNewAddressSecondVersionName');
+		
+		
+		Set Environment.Variables.ServiceVariables.VersionFunction = getCacheValue('AccountServiceVersionFunction');
+		Set Environment.Variables.ServiceVariables.VersionOperation=getCacheValue('AccountServiceVersionOperation');
+		
+		Set Environment.Variables.OFSCredentials.username=getCacheValue('OFSCredentialsUsername');
+		Set Environment.Variables.OFSCredentials.password=getCacheValue('OFSCredentialsPassword');
+		Set Environment.Variables.ServiceVariables.CompanyCode=getCacheValue('AddNewAddressCompanyCode');
+		
+		--ISLAMIC/CONVENTIONAL CHECK??
+		DECLARE AccountId CHARACTER Environment.Variables.RequestMessage.*:AddNewAccountAddress.*:AddNewAccountAddressRequest.AccountID;
+		DECLARE AccountIdFirstChar CHARACTER SUBSTRING(AccountId FROM 1 FOR 1);
+		
+		IF AccountIdFirstChar='5' THEN 
+			SET Environment.Variables.ServiceVariables.CompanyCode=getCacheValue('ActivateAccountIslamicCompanyCode');
+		ELSE 
+			SET Environment.Variables.ServiceVariables.CompanyCode=getCacheValue('ActivateAccountNormalCompanyCode');
+		END IF;
+		
+		
+		RETURN TRUE;
+	END;
+	
+	CREATE PROCEDURE getCacheValue(IN chrKey CHARACTER)
+	RETURNS CHARACTER
+	LANGUAGE JAVA
+	EXTERNAL NAME "cache.CacheUtil.getValue";
+	
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

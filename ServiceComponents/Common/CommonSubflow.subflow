@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmHTTPHeader.msgnode="ComIbmHTTPHeader.msgnode" xmlns:ComIbmMQGet.msgnode="ComIbmMQGet.msgnode" xmlns:ComIbmMQHeader.msgnode="ComIbmMQHeader.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ComIbmResetContentDescriptor.msgnode="ComIbmResetContentDescriptor.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow"
+    xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="Common/CommonSubflow.subflow" nsPrefix="Common_CommonSubflow.subflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" useDefaults="true" udpSupport="true">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.messageDomain" name="messageDomain" defaultValueLiteral="DFDL">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.resetMessageDomain" name="resetMessageDomain" lowerBound="1" defaultValueLiteral="true">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.resetMessageDomain.internal_npcompiler" name="resetMessageDomain.internal_npcompiler">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.messageSet" name="messageSet" defaultValueLiteral="{OFSMessageLibrary}">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.resetMessageSet" name="resetMessageSet" lowerBound="1" defaultValueLiteral="true">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.resetMessageSet.internal_npcompiler" name="resetMessageSet.internal_npcompiler">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.messageType" name="messageType" defaultValueLiteral="{}:OFS3PFTFundsTrasnferResponse">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.messageFormat" name="messageFormat">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.resetMessageFormat" name="resetMessageFormat" lowerBound="1" defaultValueLiteral="true">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.resetMessageFormat.internal_npcompiler" name="resetMessageFormat.internal_npcompiler">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.resetMessageType" name="resetMessageType" lowerBound="1" defaultValueLiteral="true">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.resetMessageType.internal_npcompiler" name="resetMessageType.internal_npcompiler">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.queueName" name="queueName" lowerBound="1" defaultValueLiteral="QCBAIIB.RSP">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.getWithCorrelID" name="getWithCorrelID" lowerBound="1" defaultValueLiteral="true">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.getWithCorrelID.internal_npcompiler" name="getWithCorrelID.internal_npcompiler">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.getWithMessageID" name="getWithMessageID" lowerBound="1" defaultValueLiteral="false">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.getWithMessageID.internal_npcompiler" name="getWithMessageID.internal_npcompiler">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.channelName" name="channelName" defaultValueLiteral="CCBAIIB">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.connection" name="connection" lowerBound="1" eType="//@eClassifiers.1" defaultValueLiteral="CLIENT"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.destinationQueueManagerName" name="destinationQueueManagerName" defaultValueLiteral="QMCBAIIB">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.listenerPortNumber" name="listenerPortNumber" defaultValueLiteral="1266">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.queueManagerHostname" name="queueManagerHostname" defaultValueLiteral="172.20.21.44">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.securityIdentity" name="securityIdentity">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.SSLCipherSpec" name="SSLCipherSpec">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.SSLPeerName" name="SSLPeerName">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.useSSL" name="useSSL" defaultValueLiteral="false">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.useSSL.internal_npcompiler" name="useSSL.internal_npcompiler">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.copyLocalEnv" name="copyLocalEnv" lowerBound="1" eType="//@eClassifiers.2" defaultValueLiteral="copyEntireLocalEnvironment"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.copyMessage" name="copyMessage" lowerBound="1" eType="//@eClassifiers.3" defaultValueLiteral="none"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.generateMode" name="generateMode" lowerBound="1" eType="//@eClassifiers.4" defaultValueLiteral="message"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.minimumGetBufferSize" name="minimumGetBufferSize" lowerBound="1" defaultValueLiteral="1">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.transactionMode1" name="transactionMode1" lowerBound="1" eType="//@eClassifiers.5" defaultValueLiteral="yes"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.waitInterval" name="waitInterval" lowerBound="1" defaultValueLiteral="10000">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.queueName1" name="queueName1" defaultValueLiteral="QCBAIIB.REQ">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.channelName1" name="channelName1" defaultValueLiteral="CCBAIIB">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.connection1" name="connection1" lowerBound="1" eType="//@eClassifiers.6" defaultValueLiteral="CLIENT"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.destinationQueueManagerName1" name="destinationQueueManagerName1" defaultValueLiteral="QMCBAIIB">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.listenerPortNumber1" name="listenerPortNumber1" defaultValueLiteral="1266">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.queueManagerHostname1" name="queueManagerHostname1" defaultValueLiteral="172.20.21.44">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.securityIdentity1" name="securityIdentity1">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.SSLCipherSpec1" name="SSLCipherSpec1">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.SSLPeerName1" name="SSLPeerName1">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.useSSL1" name="useSSL1" defaultValueLiteral="false">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.useSSL1.internal_npcompiler" name="useSSL1.internal_npcompiler">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.MessageDomain" name="MessageDomain" defaultValueLiteral="BLOB">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.MessageModel" name="MessageModel">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.MessageType" name="MessageType">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.MessageFormat" name="MessageFormat">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.destinationMode" name="destinationMode" lowerBound="1" eType="//@eClassifiers.7" defaultValueLiteral="fixed"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.transactionMode" name="transactionMode" lowerBound="1" eType="//@eClassifiers.8" defaultValueLiteral="automatic"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.persistenceMode" name="persistenceMode" lowerBound="1" eType="//@eClassifiers.9" defaultValueLiteral="automatic"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.newMsgId" name="newMsgId" lowerBound="1" defaultValueLiteral="false">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.newMsgId.internal_npcompiler" name="newMsgId.internal_npcompiler">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.newCorrelId" name="newCorrelId" lowerBound="1" defaultValueLiteral="false">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.newCorrelId.internal_npcompiler" name="newCorrelId.internal_npcompiler">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.segmentationAllowed" name="segmentationAllowed" lowerBound="1" defaultValueLiteral="false">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.segmentationAllowed.internal_npcompiler" name="segmentationAllowed.internal_npcompiler">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <translation xmi:type="utility:TranslatableString" key="CommonSubflow" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/ServiceComponents/icons/full/obj16/CommonSubflow.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/ServiceComponents/icons/full/obj30/CommonSubflow.gif"/>
+    <composition>
+      <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input" location="25,87">
+        <translation xmi:type="utility:TranslatableString" key="InTerminal.Input" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+      </nodes>
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output" location="712,100">
+        <translation xmi:type="utility:TranslatableString" key="OutTerminal.Output" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="446,95" computeExpression="esql://routine/T24RawLogging#T24Logging.Main">
+        <translation xmi:type="utility:ConstantString" string="T24RawLogging"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="191,91" queueName="QCBAIIB.REQ" connection="CLIENT" destinationQueueManagerName="QMCBAIIB" queueManagerHostname="172.20.21.44" listenerPortNumber="1266" channelName="CCBAIIB" messageContext="setAll" policyUrl="/apiv1/policy/MQEndpoint/DAOT24MQPolicy">
+        <translation xmi:type="utility:ConstantString" string="MQ Output"/>
+      </nodes>
+      <nodes xmi:type="ComIbmHTTPHeader.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="96,87" httpInputHeader="DeleteHeader" httpResponseHeader="DeleteHeader" httpRequestHeader="DeleteHeader" httpReplyHeader="DeleteHeader">
+        <translation xmi:type="utility:ConstantString" string="HTTP Header"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQGet.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="370,99" queueName="QCBAIIB.RSP" connection="CLIENT" destinationQueueManagerName="QMCBAIIB" queueManagerHostname="172.20.21.44" listenerPortNumber="1266" channelName="CCBAIIB" messageDomainProperty="BLOB" waitInterval="10000" minimumGetBufferSize="1" getWithCorrelID="true" policyUrl="/apiv1/policy/MQEndpoint/DAOT24MQPolicy">
+        <translation xmi:type="utility:ConstantString" string="MQ Get"/>
+      </nodes>
+      <nodes xmi:type="ComIbmResetContentDescriptor.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="544,96" messageDomain="DFDL" resetMessageDomain="true" messageSet="{OFSMessageLibrary}" resetMessageSet="true" messageType="{}:OFS3PFTFundsTrasnferResponse" resetMessageType="true" resetMessageFormat="true">
+        <translation xmi:type="utility:ConstantString" string="Reset Content Descriptor"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQHeader.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="284,95" mqmdAAAOptions="Add header" mqmdCodedCharSetId="MQCCSI_Q_MGR" mqmdFormat="MQFMT_NONE" mqmdVersion="MQMD_VERSION_1" mqmdMsgType="MQMT_DATAGRAM" mqmdExpiry="MQEI_UNLIMITED" mqmdFeedback="MQFB_NONE" mqmdPriority="MQPRI_PRIORITY_AS_Q_DEF" mqmdPersistence="MQPER_PERSISTENCE_AS_Q_DEF" mqmdMsgId="$LocalEnvironment/WrittenDestination/MQ/DestinationData/msgId" mqmdCorrelId="$LocalEnvironment/WrittenDestination/MQ/DestinationData/msgId">
+        <translation xmi:type="utility:ConstantString" string="MQ Header"/>
+      </nodes>
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output1" location="565,2">
+        <translation xmi:type="utility:TranslatableString" key="OutTerminal.Error" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_3" sourceNode="InTerminal.Input" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="OutTerminal.Output" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="OutTerminal.Output1" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="OutTerminal.Output1" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_10" targetNode="OutTerminal.Output1" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.noMessage" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_11" targetNode="OutTerminal.Output1" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_12" targetNode="OutTerminal.Output1" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_13" targetNode="OutTerminal.Output1" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer>
+      <propertyDescriptor groupName="Group.ResetContentDesc" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.MRMessageDomainPropertyEditor" describedAttribute="Property.messageDomain">
+        <propertyName xmi:type="utility:TranslatableString" key="Property.messageDomain" bundleName="ComIbmResetContentDescriptor" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+        <propertyDescriptor groupName="Group.ResetContentDesc" compiler="com.ibm.etools.mft.ibmnodes.compilers.BooleanPropertyCompiler" describedAttribute="Property.resetMessageDomain">
+          <propertyName xmi:type="utility:TranslatableString" key="Property.resetMessageDomain" bundleName="ComIbmResetContentDescriptor" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+          <propertyDescriptor groupName="Group.InternalRuntimeGroup" readOnly="true" hidden="true" userDefined="true" describedAttribute="Property.resetMessageDomain.internal_npcompiler">
+            <propertyName xmi:type="utility:TranslatableString" key="Property.resetMessageDomain.internal_npcompiler" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+            <propertyDescriptor groupName="Group.ResetContentDesc" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.MRMessageSetNamePropertyEditorV8" describedAttribute="Property.messageSet">
+              <propertyName xmi:type="utility:TranslatableString" key="Property.messageSet" bundleName="ComIbmResetContentDescriptor" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+              <propertyDescriptor groupName="Group.ResetContentDesc" compiler="com.ibm.etools.mft.ibmnodes.compilers.BooleanPropertyCompiler" describedAttribute="Property.resetMessageSet">
+                <propertyName xmi:type="utility:TranslatableString" key="Property.resetMessageSet" bundleName="ComIbmResetContentDescriptor" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                <propertyDescriptor groupName="Group.InternalRuntimeGroup" readOnly="true" hidden="true" userDefined="true" describedAttribute="Property.resetMessageSet.internal_npcompiler">
+                  <propertyName xmi:type="utility:TranslatableString" key="Property.resetMessageSet.internal_npcompiler" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                  <propertyDescriptor groupName="Group.ResetContentDesc" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.MRMessageTypePropertyEditorV8" describedAttribute="Property.messageType">
+                    <propertyName xmi:type="utility:TranslatableString" key="Property.messageType" bundleName="ComIbmResetContentDescriptor" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                    <propertyDescriptor groupName="Group.ResetContentDesc" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.MRMessageFormatPropertyEditor" describedAttribute="Property.messageFormat">
+                      <propertyName xmi:type="utility:TranslatableString" key="Property.messageFormat" bundleName="ComIbmResetContentDescriptor" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                      <propertyDescriptor groupName="Group.ResetContentDesc" compiler="com.ibm.etools.mft.ibmnodes.compilers.BooleanPropertyCompiler" describedAttribute="Property.resetMessageFormat">
+                        <propertyName xmi:type="utility:TranslatableString" key="Property.resetMessageFormat" bundleName="ComIbmResetContentDescriptor" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                        <propertyDescriptor groupName="Group.InternalRuntimeGroup" readOnly="true" hidden="true" userDefined="true" describedAttribute="Property.resetMessageFormat.internal_npcompiler">
+                          <propertyName xmi:type="utility:TranslatableString" key="Property.resetMessageFormat.internal_npcompiler" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                          <propertyDescriptor groupName="Group.ResetContentDesc" compiler="com.ibm.etools.mft.ibmnodes.compilers.BooleanPropertyCompiler" describedAttribute="Property.resetMessageType">
+                            <propertyName xmi:type="utility:TranslatableString" key="Property.resetMessageType" bundleName="ComIbmResetContentDescriptor" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                            <propertyDescriptor groupName="Group.InternalRuntimeGroup" readOnly="true" hidden="true" userDefined="true" describedAttribute="Property.resetMessageType.internal_npcompiler">
+                              <propertyName xmi:type="utility:TranslatableString" key="Property.resetMessageType.internal_npcompiler" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                              <propertyDescriptor groupName="Group.MQGet" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.MQQueueNameEditor" configurable="true" describedAttribute="Property.queueName">
+                                <propertyName xmi:type="utility:TranslatableString" key="Property.queueName" bundleName="ComIbmMQGet" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                                <propertyDescriptor groupName="Group.MQGet" compiler="com.ibm.etools.mft.ibmnodes.compilers.BooleanPropertyCompiler" describedAttribute="Property.getWithCorrelID">
+                                  <propertyName xmi:type="utility:TranslatableString" key="Property.getWithCorrelID" bundleName="ComIbmMQGet" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                                  <propertyDescriptor groupName="Group.InternalRuntimeGroup" readOnly="true" hidden="true" userDefined="true" describedAttribute="Property.getWithCorrelID.internal_npcompiler">
+                                    <propertyName xmi:type="utility:TranslatableString" key="Property.getWithCorrelID.internal_npcompiler" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                                    <propertyDescriptor groupName="Group.MQGet" compiler="com.ibm.etools.mft.ibmnodes.compilers.BooleanPropertyCompiler" describedAttribute="Property.getWithMessageID">
+                                      <propertyName xmi:type="utility:TranslatableString" key="Property.getWithMessageID" bundleName="ComIbmMQGet" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                                      <propertyDescriptor groupName="Group.InternalRuntimeGroup" readOnly="true" hidden="true" userDefined="true" describedAttribute="Property.getWithMessageID.internal_npcompiler">
+                                        <propertyName xmi:type="utility:TranslatableString" key="Property.getWithMessageID.internal_npcompiler" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                                        <propertyDescriptor groupName="Group.MQGet" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.ChannelNameEditor" configurable="true" describedAttribute="Property.channelName">
+                                          <propertyName xmi:type="utility:TranslatableString" key="Property.channelName" bundleName="ComIbmMQGet" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                                          <propertyDescriptor groupName="Group.MQGet" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.BindingTypeEditor" configurable="true" describedAttribute="Property.connection">
+                                            <propertyName xmi:type="utility:TranslatableString" key="Property.connection" bundleName="ComIbmMQGet" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                                            <propertyDescriptor groupName="Group.MQGet" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.RemoteQueueManagerNameEditor" configurable="true" describedAttribute="Property.destinationQueueManagerName">
+                                              <propertyName xmi:type="utility:TranslatableString" key="Property.destinationQueueManagerName" bundleName="ComIbmMQGet" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                                              <propertyDescriptor groupName="Group.MQGet" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.PortPropertyEditor" configurable="true" describedAttribute="Property.listenerPortNumber">
+                                                <propertyName xmi:type="utility:TranslatableString" key="Property.listenerPortNumber" bundleName="ComIbmMQGet" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                                                <propertyDescriptor groupName="Group.MQGet" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.HostnamePropertyEditor" configurable="true" describedAttribute="Property.queueManagerHostname">
+                                                  <propertyName xmi:type="utility:TranslatableString" key="Property.queueManagerHostname" bundleName="ComIbmMQGet" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                                                  <propertyDescriptor groupName="Group.MQGet" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.SecurityIdentityNameEditor" configurable="true" describedAttribute="Property.securityIdentity">
+                                                    <propertyName xmi:type="utility:TranslatableString" key="Property.securityIdentity" bundleName="ComIbmMQGet" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                                                    <propertyDescriptor groupName="Group.MQGet" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.SSLCipherSpecEditor" configurable="true" describedAttribute="Property.SSLCipherSpec">
+                                                      <propertyName xmi:type="utility:TranslatableString" key="Property.SSLCipherSpec" bundleName="ComIbmMQGet" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                                                      <propertyDescriptor groupName="Group.MQGet" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.SSLPeerNameEditor" configurable="true" describedAttribute="Property.SSLPeerName">
+                                                        <propertyName xmi:type="utility:TranslatableString" key="Property.SSLPeerName" bundleName="ComIbmMQGet" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                                                        <propertyDescriptor groupName="Group.MQGet" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.UseSSLEditor" compiler="com.ibm.etools.mft.ibmnodes.compilers.BooleanPropertyCompiler" configurable="true" describedAttribute="Property.useSSL">
+                                                          <propertyName xmi:type="utility:TranslatableString" key="Property.useSSL" bundleName="ComIbmMQGet" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                                                          <propertyDescriptor groupName="Group.InternalRuntimeGroup" readOnly="true" hidden="true" userDefined="true" describedAttribute="Property.useSSL.internal_npcompiler">
+                                                            <propertyName xmi:type="utility:TranslatableString" key="Property.useSSL.internal_npcompiler" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                                                            <propertyDescriptor groupName="Group.MQGet" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.GenerateModeListenerPropertyEditor" describedAttribute="Property.copyLocalEnv">
+                                                              <propertyName xmi:type="utility:TranslatableString" key="Property.copyLocalEnv" bundleName="ComIbmMQGet" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                                                              <propertyDescriptor groupName="Group.MQGet" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.GenerateModeListenerPropertyEditor" describedAttribute="Property.copyMessage">
+                                                                <propertyName xmi:type="utility:TranslatableString" key="Property.copyMessage" bundleName="ComIbmMQGet" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                                                                <propertyDescriptor groupName="Group.MQGet" describedAttribute="Property.generateMode">
+                                                                  <propertyName xmi:type="utility:TranslatableString" key="Property.generateMode" bundleName="ComIbmMQGet" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                                                                  <propertyDescriptor groupName="Group.MQGet" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.NotNullPositiveIntegerPropertyEditor" describedAttribute="Property.minimumGetBufferSize">
+                                                                    <propertyName xmi:type="utility:TranslatableString" key="Property.minimumGetBufferSize" bundleName="ComIbmMQGet" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                                                                    <propertyDescriptor groupName="Group.MQGet" describedAttribute="Property.transactionMode1">
+                                                                      <propertyName xmi:type="utility:TranslatableString" key="Property.transactionMode1" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                                                                      <propertyDescriptor groupName="Group.MQGet" describedAttribute="Property.waitInterval">
+                                                                        <propertyName xmi:type="utility:TranslatableString" key="Property.waitInterval" bundleName="ComIbmMQGet" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                                                                        <propertyDescriptor groupName="Group.MQOut" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.MQQueueNameEditor" configurable="true" describedAttribute="Property.queueName1">
+                                                                          <propertyName xmi:type="utility:TranslatableString" key="Property.queueName1" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                                                                          <propertyDescriptor groupName="Group.MQOut" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.ChannelNameEditor" configurable="true" describedAttribute="Property.channelName1">
+                                                                            <propertyName xmi:type="utility:TranslatableString" key="Property.channelName1" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                                                                            <propertyDescriptor groupName="Group.MQOut" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.BindingTypeEditor" configurable="true" describedAttribute="Property.connection1">
+                                                                              <propertyName xmi:type="utility:TranslatableString" key="Property.connection1" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                                                                              <propertyDescriptor groupName="Group.MQOut" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.RemoteQueueManagerNameEditor" configurable="true" describedAttribute="Property.destinationQueueManagerName1">
+                                                                                <propertyName xmi:type="utility:TranslatableString" key="Property.destinationQueueManagerName1" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                                                                                <propertyDescriptor groupName="Group.MQOut" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.PortPropertyEditor" configurable="true" describedAttribute="Property.listenerPortNumber1">
+                                                                                  <propertyName xmi:type="utility:TranslatableString" key="Property.listenerPortNumber1" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                                                                                  <propertyDescriptor groupName="Group.MQOut" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.HostnamePropertyEditor" configurable="true" describedAttribute="Property.queueManagerHostname1">
+                                                                                    <propertyName xmi:type="utility:TranslatableString" key="Property.queueManagerHostname1" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                                                                                    <propertyDescriptor groupName="Group.MQOut" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.SecurityIdentityNameEditor" configurable="true" describedAttribute="Property.securityIdentity1">
+                                                                                      <propertyName xmi:type="utility:TranslatableString" key="Property.securityIdentity1" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                                                                                      <propertyDescriptor groupName="Group.MQOut" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.SSLCipherSpecEditor" configurable="true" describedAttribute="Property.SSLCipherSpec1">
+                                                                                        <propertyName xmi:type="utility:TranslatableString" key="Property.SSLCipherSpec1" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                                                                                        <propertyDescriptor groupName="Group.MQOut" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.SSLPeerNameEditor" configurable="true" describedAttribute="Property.SSLPeerName1">
+                                                                                          <propertyName xmi:type="utility:TranslatableString" key="Property.SSLPeerName1" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                                                                                          <propertyDescriptor groupName="Group.MQOut" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.UseSSLEditor" compiler="com.ibm.etools.mft.ibmnodes.compilers.BooleanPropertyCompiler" configurable="true" describedAttribute="Property.useSSL1">
+                                                                                            <propertyName xmi:type="utility:TranslatableString" key="Property.useSSL1" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                                                                                            <propertyDescriptor groupName="Group.InternalRuntimeGroup" readOnly="true" hidden="true" userDefined="true" describedAttribute="Property.useSSL1.internal_npcompiler">
+                                                                                              <propertyName xmi:type="utility:TranslatableString" key="Property.useSSL1.internal_npcompiler" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                                                                                              <propertyDescriptor groupName="Group.MQGetInputParsing" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.MQMessageDomainEditor" describedAttribute="Property.MessageDomain">
+                                                                                                <propertyName xmi:type="utility:TranslatableString" key="Property.MessageDomain" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                                                                                                <propertyDescriptor groupName="Group.MQGetInputParsing" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.MRMessageSetNamePropertyEditorV8" describedAttribute="Property.MessageModel">
+                                                                                                  <propertyName xmi:type="utility:TranslatableString" key="Property.MessageModel" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                                                                                                  <propertyDescriptor groupName="Group.MQGetInputParsing" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.MQMessageTypeEditor" describedAttribute="Property.MessageType">
+                                                                                                    <propertyName xmi:type="utility:TranslatableString" key="Property.MessageType" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                                                                                                    <propertyDescriptor groupName="Group.MQGetInputParsing" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.MRMessageFormatPropertyEditor" describedAttribute="Property.MessageFormat">
+                                                                                                      <propertyName xmi:type="utility:TranslatableString" key="Property.MessageFormat" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                                                                                                      <propertyDescriptor groupName="Group.MQOutAdvanced" describedAttribute="Property.destinationMode">
+                                                                                                        <propertyName xmi:type="utility:TranslatableString" key="Property.destinationMode" bundleName="ComIbmMQOutput" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                                                                                                        <propertyDescriptor groupName="Group.MQOutAdvanced" describedAttribute="Property.transactionMode">
+                                                                                                          <propertyName xmi:type="utility:TranslatableString" key="Property.transactionMode" bundleName="ComIbmMQOutput" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                                                                                                          <propertyDescriptor groupName="Group.MQOutAdvanced" describedAttribute="Property.persistenceMode">
+                                                                                                            <propertyName xmi:type="utility:TranslatableString" key="Property.persistenceMode" bundleName="ComIbmMQOutput" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                                                                                                            <propertyDescriptor groupName="Group.MQOutAdvanced" compiler="com.ibm.etools.mft.ibmnodes.compilers.BooleanPropertyCompiler" describedAttribute="Property.newMsgId">
+                                                                                                              <propertyName xmi:type="utility:TranslatableString" key="Property.newMsgId" bundleName="ComIbmMQOutput" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                                                                                                              <propertyDescriptor groupName="Group.InternalRuntimeGroup" readOnly="true" hidden="true" userDefined="true" describedAttribute="Property.newMsgId.internal_npcompiler">
+                                                                                                                <propertyName xmi:type="utility:TranslatableString" key="Property.newMsgId.internal_npcompiler" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                                                                                                                <propertyDescriptor groupName="Group.MQOutAdvanced" compiler="com.ibm.etools.mft.ibmnodes.compilers.BooleanPropertyCompiler" describedAttribute="Property.newCorrelId">
+                                                                                                                  <propertyName xmi:type="utility:TranslatableString" key="Property.newCorrelId" bundleName="ComIbmMQOutput" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                                                                                                                  <propertyDescriptor groupName="Group.InternalRuntimeGroup" readOnly="true" hidden="true" userDefined="true" describedAttribute="Property.newCorrelId.internal_npcompiler">
+                                                                                                                    <propertyName xmi:type="utility:TranslatableString" key="Property.newCorrelId.internal_npcompiler" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                                                                                                                    <propertyDescriptor groupName="Group.MQOutAdvanced" compiler="com.ibm.etools.mft.ibmnodes.compilers.BooleanPropertyCompiler" describedAttribute="Property.segmentationAllowed">
+                                                                                                                      <propertyName xmi:type="utility:TranslatableString" key="Property.segmentationAllowed" bundleName="ComIbmMQOutput" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+                                                                                                                      <propertyDescriptor groupName="Group.InternalRuntimeGroup" readOnly="true" hidden="true" userDefined="true" describedAttribute="Property.segmentationAllowed.internal_npcompiler">
+                                                                                                                        <propertyName xmi:type="utility:TranslatableString" key="Property.segmentationAllowed.internal_npcompiler" bundleName="Common/CommonSubflow" pluginId="ServiceComponents"/>
+                                                                                                                      </propertyDescriptor>
+                                                                                                                    </propertyDescriptor>
+                                                                                                                  </propertyDescriptor>
+                                                                                                                </propertyDescriptor>
+                                                                                                              </propertyDescriptor>
+                                                                                                            </propertyDescriptor>
+                                                                                                          </propertyDescriptor>
+                                                                                                        </propertyDescriptor>
+                                                                                                      </propertyDescriptor>
+                                                                                                    </propertyDescriptor>
+                                                                                                  </propertyDescriptor>
+                                                                                                </propertyDescriptor>
+                                                                                              </propertyDescriptor>
+                                                                                            </propertyDescriptor>
+                                                                                          </propertyDescriptor>
+                                                                                        </propertyDescriptor>
+                                                                                      </propertyDescriptor>
+                                                                                    </propertyDescriptor>
+                                                                                  </propertyDescriptor>
+                                                                                </propertyDescriptor>
+                                                                              </propertyDescriptor>
+                                                                            </propertyDescriptor>
+                                                                          </propertyDescriptor>
+                                                                        </propertyDescriptor>
+                                                                      </propertyDescriptor>
+                                                                    </propertyDescriptor>
+                                                                  </propertyDescriptor>
+                                                                </propertyDescriptor>
+                                                              </propertyDescriptor>
+                                                            </propertyDescriptor>
+                                                          </propertyDescriptor>
+                                                        </propertyDescriptor>
+                                                      </propertyDescriptor>
+                                                    </propertyDescriptor>
+                                                  </propertyDescriptor>
+                                                </propertyDescriptor>
+                                              </propertyDescriptor>
+                                            </propertyDescriptor>
+                                          </propertyDescriptor>
+                                        </propertyDescriptor>
+                                      </propertyDescriptor>
+                                    </propertyDescriptor>
+                                  </propertyDescriptor>
+                                </propertyDescriptor>
+                              </propertyDescriptor>
+                            </propertyDescriptor>
+                          </propertyDescriptor>
+                        </propertyDescriptor>
+                      </propertyDescriptor>
+                    </propertyDescriptor>
+                  </propertyDescriptor>
+                </propertyDescriptor>
+              </propertyDescriptor>
+            </propertyDescriptor>
+          </propertyDescriptor>
+        </propertyDescriptor>
+      </propertyDescriptor>
+    </propertyOrganizer>
+    <attributeLinks promotedAttribute="Property.messageDomain" overriddenNodes="FCMComposite_1_5">
+      <overriddenAttribute href="ComIbmResetContentDescriptor.msgnode#Property.messageDomain"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.resetMessageDomain" overriddenNodes="FCMComposite_1_5">
+      <overriddenAttribute href="ComIbmResetContentDescriptor.msgnode#Property.resetMessageDomain"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.messageSet" overriddenNodes="FCMComposite_1_5">
+      <overriddenAttribute href="ComIbmResetContentDescriptor.msgnode#Property.messageSet"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.resetMessageSet" overriddenNodes="FCMComposite_1_5">
+      <overriddenAttribute href="ComIbmResetContentDescriptor.msgnode#Property.resetMessageSet"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.messageType" overriddenNodes="FCMComposite_1_5">
+      <overriddenAttribute href="ComIbmResetContentDescriptor.msgnode#Property.messageType"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.messageFormat" overriddenNodes="FCMComposite_1_5">
+      <overriddenAttribute href="ComIbmResetContentDescriptor.msgnode#Property.messageFormat"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.resetMessageFormat" overriddenNodes="FCMComposite_1_5">
+      <overriddenAttribute href="ComIbmResetContentDescriptor.msgnode#Property.resetMessageFormat"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.resetMessageType" overriddenNodes="FCMComposite_1_5">
+      <overriddenAttribute href="ComIbmResetContentDescriptor.msgnode#Property.resetMessageType"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.queueName" overriddenNodes="FCMComposite_1_4">
+      <overriddenAttribute href="ComIbmMQGet.msgnode#Property.queueName"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.getWithCorrelID" overriddenNodes="FCMComposite_1_4">
+      <overriddenAttribute href="ComIbmMQGet.msgnode#Property.getWithCorrelID"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.getWithMessageID" overriddenNodes="FCMComposite_1_4">
+      <overriddenAttribute href="ComIbmMQGet.msgnode#Property.getWithMessageID"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.channelName" overriddenNodes="FCMComposite_1_4">
+      <overriddenAttribute href="ComIbmMQGet.msgnode#Property.channelName"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.connection" overriddenNodes="FCMComposite_1_4">
+      <overriddenAttribute href="ComIbmMQGet.msgnode#Property.connection"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.destinationQueueManagerName" overriddenNodes="FCMComposite_1_4">
+      <overriddenAttribute href="ComIbmMQGet.msgnode#Property.destinationQueueManagerName"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.listenerPortNumber" overriddenNodes="FCMComposite_1_4">
+      <overriddenAttribute href="ComIbmMQGet.msgnode#Property.listenerPortNumber"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.queueManagerHostname" overriddenNodes="FCMComposite_1_4">
+      <overriddenAttribute href="ComIbmMQGet.msgnode#Property.queueManagerHostname"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.securityIdentity" overriddenNodes="FCMComposite_1_4">
+      <overriddenAttribute href="ComIbmMQGet.msgnode#Property.securityIdentity"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.SSLCipherSpec" overriddenNodes="FCMComposite_1_4">
+      <overriddenAttribute href="ComIbmMQGet.msgnode#Property.SSLCipherSpec"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.SSLPeerName" overriddenNodes="FCMComposite_1_4">
+      <overriddenAttribute href="ComIbmMQGet.msgnode#Property.SSLPeerName"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.useSSL" overriddenNodes="FCMComposite_1_4">
+      <overriddenAttribute href="ComIbmMQGet.msgnode#Property.useSSL"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.copyLocalEnv" overriddenNodes="FCMComposite_1_4">
+      <overriddenAttribute href="ComIbmMQGet.msgnode#Property.copyLocalEnv"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.copyMessage" overriddenNodes="FCMComposite_1_4">
+      <overriddenAttribute href="ComIbmMQGet.msgnode#Property.copyMessage"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.generateMode" overriddenNodes="FCMComposite_1_4">
+      <overriddenAttribute href="ComIbmMQGet.msgnode#Property.generateMode"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.minimumGetBufferSize" overriddenNodes="FCMComposite_1_4">
+      <overriddenAttribute href="ComIbmMQGet.msgnode#Property.minimumGetBufferSize"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.transactionMode1" overriddenNodes="FCMComposite_1_4">
+      <overriddenAttribute href="ComIbmMQGet.msgnode#Property.transactionMode"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.waitInterval" overriddenNodes="FCMComposite_1_4">
+      <overriddenAttribute href="ComIbmMQGet.msgnode#Property.waitInterval"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.queueName1" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmMQOutput.msgnode#Property.queueName"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.channelName1" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmMQOutput.msgnode#Property.channelName"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.connection1" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmMQOutput.msgnode#Property.connection"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.destinationQueueManagerName1" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmMQOutput.msgnode#Property.destinationQueueManagerName"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.listenerPortNumber1" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmMQOutput.msgnode#Property.listenerPortNumber"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.queueManagerHostname1" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmMQOutput.msgnode#Property.queueManagerHostname"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.securityIdentity1" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmMQOutput.msgnode#Property.securityIdentity"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.SSLCipherSpec1" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmMQOutput.msgnode#Property.SSLCipherSpec"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.SSLPeerName1" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmMQOutput.msgnode#Property.SSLPeerName"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.useSSL1" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmMQOutput.msgnode#Property.useSSL"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.MessageDomain" overriddenNodes="FCMComposite_1_4">
+      <overriddenAttribute href="ComIbmMQGet.msgnode#Property.messageDomainProperty"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.MessageModel" overriddenNodes="FCMComposite_1_4">
+      <overriddenAttribute href="ComIbmMQGet.msgnode#Property.messageSetProperty"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.MessageType" overriddenNodes="FCMComposite_1_4">
+      <overriddenAttribute href="ComIbmMQGet.msgnode#Property.messageTypeProperty"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.MessageFormat" overriddenNodes="FCMComposite_1_4">
+      <overriddenAttribute href="ComIbmMQGet.msgnode#Property.messageFormatProperty"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.destinationMode" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmMQOutput.msgnode#Property.destinationMode"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.transactionMode" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmMQOutput.msgnode#Property.transactionMode"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.persistenceMode" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmMQOutput.msgnode#Property.persistenceMode"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.newMsgId" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmMQOutput.msgnode#Property.newMsgId"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.newCorrelId" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmMQOutput.msgnode#Property.newCorrelId"/>
+    </attributeLinks>
+    <attributeLinks promotedAttribute="Property.segmentationAllowed" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmMQOutput.msgnode#Property.segmentationAllowed"/>
+    </attributeLinks>
+    <stickyBoard/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EEnum">
+    <eLiterals xmi:id="connection.SERVER" name="SERVER"/>
+    <eLiterals xmi:id="connection.CLIENT" name="CLIENT" value="1"/>
+    <eLiterals xmi:id="connection.CCDT" name="CCDT" value="2"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EEnum">
+    <eLiterals xmi:id="copyLocalEnv.none" name="none"/>
+    <eLiterals xmi:id="copyLocalEnv.copyEntireLocalEnvironment" name="copyEntireLocalEnvironment" value="1"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EEnum">
+    <eLiterals xmi:id="copyMessage.none" name="none"/>
+    <eLiterals xmi:id="copyMessage.copyHeaders" name="copyHeaders" value="1"/>
+    <eLiterals xmi:id="copyMessage.copyEntireMessage" name="copyEntireMessage" value="2"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EEnum">
+    <eLiterals xmi:id="generateMode.none" name="none"/>
+    <eLiterals xmi:id="generateMode.message" name="message" value="1"/>
+    <eLiterals xmi:id="generateMode.localEnvironment" name="localEnvironment" value="2"/>
+    <eLiterals xmi:id="generateMode.messageAndLocalEnvironment" name="messageAndLocalEnvironment" value="3"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EEnum">
+    <eLiterals xmi:id="transactionMode1.automatic" name="automatic"/>
+    <eLiterals xmi:id="transactionMode1.yes" name="yes" value="1"/>
+    <eLiterals xmi:id="transactionMode1.no" name="no" value="2"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EEnum">
+    <eLiterals xmi:id="connection1.SERVER" name="SERVER"/>
+    <eLiterals xmi:id="connection1.CLIENT" name="CLIENT" value="1"/>
+    <eLiterals xmi:id="connection1.CCDT" name="CCDT" value="2"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EEnum">
+    <eLiterals xmi:id="destinationMode.list" name="list"/>
+    <eLiterals xmi:id="destinationMode.reply" name="reply" value="1"/>
+    <eLiterals xmi:id="destinationMode.fixed" name="fixed" value="2"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EEnum">
+    <eLiterals xmi:id="transactionMode.automatic" name="automatic"/>
+    <eLiterals xmi:id="transactionMode.yes" name="yes" value="1"/>
+    <eLiterals xmi:id="transactionMode.no" name="no" value="2"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EEnum">
+    <eLiterals xmi:id="persistenceMode.automatic" name="automatic"/>
+    <eLiterals xmi:id="persistenceMode.yes" name="yes" value="1"/>
+    <eLiterals xmi:id="persistenceMode.no" name="no" value="2"/>
+    <eLiterals xmi:id="persistenceMode.asQdef" name="asQdef" value="3"/>
+  </eClassifiers>
+</ecore:EPackage>

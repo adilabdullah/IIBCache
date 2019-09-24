@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:csv="http://www.ibm.com/dfdl/CommaSeparatedFormat" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+
+
+    <xsd:import namespace="http://www.ibm.com/dfdl/CommaSeparatedFormat" schemaLocation="IBMdefined/CommaSeparatedFormat.xsd"/>
+        <xsd:element ibmSchExtn:docRoot="true" name="OFSLMSAutoChild">
+    <xsd:complexType>
+      <xsd:sequence>
+                                                                  <xsd:element name="body">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:sequence dfdl:separator="/">
+                <xsd:element minOccurs="0" name="Operation" type="xsd:string"/>
+              </xsd:sequence>
+              <xsd:sequence dfdl:separator="/">
+                <xsd:element minOccurs="0" name="Version" type="xsd:string"/>
+                <xsd:element minOccurs="0" name="VersionFunction" type="xsd:string"/>
+                <xsd:element minOccurs="0" name="VersionOperation" type="xsd:string"/>
+              </xsd:sequence>
+              <xsd:sequence dfdl:separator="/">
+                <xsd:element minOccurs="0" name="SignOn" type="xsd:string"/>
+                <xsd:element minOccurs="0" name="Password" type="xsd:string"/>
+                <xsd:element minOccurs="0" name="CompanyCode" type="xsd:string"/>
+              </xsd:sequence>
+              <xsd:sequence dfdl:separator="/">
+                <xsd:element minOccurs="0" name="TransactionId" type="xsd:string"/>
+                <xsd:element minOccurs="0" name="MessageId" type="xsd:string"/>
+              </xsd:sequence>
+              <xsd:sequence>
+                                                              <xsd:element name="MessageData">
+                  <xsd:complexType>
+                     <xsd:sequence dfdl:separatorSuppressionPolicy="anyEmpty">
+              			<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="ASSET.TYPE:1:1=" minOccurs="0" name="AssetType" type="xsd:string"/>
+              			<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="ASST.DESC:1:1=" minOccurs="0" name="AssetDescription" type="xsd:string"/>
+              			<xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="ASSET.COND:1:1=" minOccurs="0" name="AssetCondition" type="xsd:string"/>
+                        <xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="LEASE.CUST:1:1=" minOccurs="0" name="CustomerID" type="xsd:string"/>
+                        <xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="P.LMS.ID:1:1=" minOccurs="0" name="ParentLMSID" type="xsd:string"/>
+                        <xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="LEASE.AMT:1:1=" minOccurs="0" name="LeaseAmount" type="xsd:string"/>
+                        <xsd:element dfdl:escapeSchemeRef="" dfdl:initiator="INSUR.RATE:1:1=" minOccurs="0" name="InsuranceRate" type="xsd:string"/>
+                    </xsd:sequence>
+                  </xsd:complexType>
+                </xsd:element>
+                            </xsd:sequence>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+            </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:annotation>
+		<xsd:appinfo source="http://www.ogf.org/dfdl/">
+			<dfdl:format documentFinalTerminatorCanBeMissing="yes" encoding="{$dfdl:encoding}" escapeSchemeRef="csv:CSVEscapeScheme" ref="csv:CommaSeparatedFormat"/>
+		</xsd:appinfo>
+	</xsd:annotation>
+</xsd:schema>

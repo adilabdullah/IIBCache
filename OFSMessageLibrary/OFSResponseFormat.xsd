@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:recSepFieldsFmt="http://www.ibm.com/dfdl/RecordSeparatedFieldFormat">
+    <xsd:import namespace="http://www.ibm.com/dfdl/RecordSeparatedFieldFormat" schemaLocation="IBMdefined/RecordSeparatedFieldFormat.xsd"/>
+                <xsd:element ibmSchExtn:docRoot="true" name="ResponseHeader">
+    <xsd:complexType>
+      <xsd:sequence dfdl:separator="">
+        <xsd:element dfdl:terminator=":" name="ResponseCodeName" type="xsd:string"/>
+        <xsd:element dfdl:emptyValueDelimiterPolicy="both" dfdl:escapeSchemeRef="recSepFieldsFmt:RecordEscapeScheme" dfdl:initiator="&lt;" dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:nilValueDelimiterPolicy="both" dfdl:terminator="&gt;" dfdl:useNilForDefault="yes" maxOccurs="unbounded" name="ResponseCodeValue" nillable="true" type="xsd:string"/>
+        <xsd:element dfdl:initiator="," dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:terminator=":" dfdl:useNilForDefault="yes" minOccurs="0" name="ResponseDescriptionName" nillable="true" type="xsd:string"/>
+        <xsd:element default="" dfdl:emptyValueDelimiterPolicy="both" dfdl:escapeSchemeRef="recSepFieldsFmt:RecordEscapeScheme" dfdl:initiator="&lt;" dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:nilValueDelimiterPolicy="both" dfdl:terminator="&gt;" dfdl:useNilForDefault="yes" maxOccurs="unbounded" minOccurs="0" name="ResponseDescriptionValue" nillable="true" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element ibmSchExtn:docRoot="true" name="ResponseRow">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element maxOccurs="unbounded" ref="ResponseField"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element ibmSchExtn:docRoot="true" name="ResponseField">
+    <xsd:complexType>
+      <xsd:sequence dfdl:separator="">
+        <xsd:element dfdl:terminator=":" name="ResponseFieldName" type="xsd:string"/>
+                        <xsd:sequence dfdl:separator="">
+          <xsd:element default="" dfdl:emptyValueDelimiterPolicy="both" dfdl:escapeSchemeRef="recSepFieldsFmt:RecordEscapeScheme" dfdl:initiator="&lt;" dfdl:nilKind="literalValue" dfdl:nilValue="%SP;" dfdl:nilValueDelimiterPolicy="both" dfdl:terminator="&gt;" dfdl:useNilForDefault="yes" maxOccurs="unbounded" name="ResponseFieldValue" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:annotation>
+		<xsd:appinfo source="http://www.ogf.org/dfdl/">
+			<dfdl:format encoding="{$dfdl:encoding}" escapeSchemeRef="" occursCountKind="implicit" ref="recSepFieldsFmt:RecordSeparatedFieldsFormat"/>
+		</xsd:appinfo>
+	</xsd:annotation>
+
+	<xsd:element ibmSchExtn:docRoot="true" name="OFSResponseFormat">
+		<xsd:complexType>
+			<xsd:sequence dfdl:separator="">
+				<xsd:element name="body">
+					<xsd:complexType>
+                        											<xsd:sequence dfdl:separator="|">
+                                                                                                                                                                                                  <xsd:element minOccurs="0" ref="ResponseHeader"/>
+                            <xsd:element maxOccurs="unbounded" minOccurs="0" ref="ResponseRow"/>
+                                                                                                    </xsd:sequence>
+                    </xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+</xsd:schema>

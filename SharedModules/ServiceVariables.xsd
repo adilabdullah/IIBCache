@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:complexType name="ServiceVariablesType">
+    	<xsd:sequence>
+    		<xsd:element name="GetCustomerDetails_Operation"
+    			type="xsd:string">
+    		</xsd:element>
+    		<xsd:element name="GetCustomerDetails_TransactionID"
+    			type="xsd:string">
+    		</xsd:element>
+    		<xsd:element name="ChannelID" type="xsd:string"></xsd:element>
+    		<xsd:element name="GetAccountStatement_NoOfTransactions"
+    			type="xsd:string">
+    		</xsd:element>
+    		<xsd:element name="GetAccountStatement_OperationName"
+    			type="xsd:string">
+    		</xsd:element>
+    		<xsd:element name="OperationName" type="xsd:string"></xsd:element>
+    		<xsd:element name="VersionName" type="xsd:string"></xsd:element>
+    		<xsd:element name="VersionFunction" type="xsd:string"></xsd:element>
+    		<xsd:element name="VersionOperation" type="xsd:string"></xsd:element>
+    		<xsd:element name="TransactionId" type="xsd:string"></xsd:element>
+    		<xsd:element name="OrderingBank" type="xsd:string"></xsd:element>
+    		<xsd:element name="UniqueId" type="xsd:string"></xsd:element>
+    		<xsd:element name="CompanyCode" type="xsd:string"></xsd:element>
+    		<xsd:element name="AccountNumber" type="xsd:string"></xsd:element>
+    		<xsd:element name="FromDate" type="xsd:string"></xsd:element>
+    		<xsd:element name="ToDate" type="xsd:string"></xsd:element>
+    		<xsd:element name="AccountType" type="xsd:string"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:element name="ServiceVariables" type="ServiceVariablesType"></xsd:element>
+</xsd:schema>

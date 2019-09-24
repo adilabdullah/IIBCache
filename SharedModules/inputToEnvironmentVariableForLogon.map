@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="default" version="8.0.5.0" xmlns:map="default">
+    <input path="jar:file://!com/ibm/etools/mft/map/xsds/assembly/Environment.xsd" var="var1"/>
+    <input path="/LogonSchema.xsd" var="var"/>
+    <input path="/LogonSchema.xsd" var="var2"/>
+    <output path="jar:file://!com/ibm/etools/mft/map/xsds/assembly/Environment.xsd"/>
+    <imports>
+        <import kind="java" location="LogonMessageTransformation" namespace="xalan://LogonMessageTransformation"/>
+    </imports>
+    <namespaces>
+        <namespace kind="extension" prefix="LogonMessageTransformation" uri="xalan://LogonMessageTransformation"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="inputToEnvironmentVariableForLogon">
+        <input path="$var1/mb:env(Environment)">
+            <cast path="Variables/any" qualifier="LogonMessage" ref="var"/>
+        </input>
+        <output path="mb:env(Environment)">
+            <cast path="Variables/any" qualifier="LogonMessage" ref="var"/>
+        </output>
+        <passthrough>
+            <input path="."/>
+            <output path="."/>
+            <updates>
+                <customFunction lang="java" ref="LogonMessageTransformation:CustomerId">
+                    <input path="Variables/LogonMessage[1]/CustomerID" var="CustomerID"/>
+                    <output path="Variables/LogonMessage/CustomerID"/>
+                    <param name="message" value="$CustomerID"/>
+                </customFunction>
+                <customFunction lang="java" ref="LogonMessageTransformation:DeliveryChanneltype">
+                    <input path="Variables/LogonMessage[1]/DeliveryChannelType" var="DeliveryChannelType"/>
+                    <output path="Variables/LogonMessage/DeliveryChannelType"/>
+                    <param name="message" value="$DeliveryChannelType"/>
+                </customFunction>
+                <customFunction lang="java" ref="LogonMessageTransformation:ChannelSpecificDataField">
+                    <input path="Variables/LogonMessage[1]/ChannelSpecificDataField" var="ChannelSpecificDataField"/>
+                    <output path="Variables/LogonMessage/ChannelSpecificDataField"/>
+                    <param name="message" value="$ChannelSpecificDataField"/>
+                </customFunction>
+            </updates>
+        </passthrough>
+    </mappingDeclaration>
+</mappingRoot>
